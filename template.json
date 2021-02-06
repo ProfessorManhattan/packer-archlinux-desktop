@@ -5,6 +5,7 @@
             "boot_wait": "{{user `boot_wait`}}",
             "http_directory": "{{user `http_directory`}}",
             "disk_size": "{{user `disk_size`}}",
+            "hard_drive_interface": "sata",
             "guest_os_type": "ArchLinux_64",
             "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-virtualbox",
             "iso_checksum": "{{user `iso_checksum`}}",
@@ -13,9 +14,9 @@
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "{{user `ssh_timeout`}}",
-            "shutdown_command": "sudo systemctl poweroff",
+            "shutdown_command": "sudo systemctl start poweroff.timer",
             "guest_additions_mode": "disable",
-            "headless": "false",
+            "headless": "{{ user `headless`}}",
             "vboxmanage": [
                 [
                     "modifyvm",
@@ -46,19 +47,21 @@
       ],
       "provisioners": [
         {
-          "environment_vars": [
-            "HOME_DIR=/home/vagrant",
-            "http_proxy={{user `http_proxy`}}",
-            "https_proxy={{user `https_proxy`}}",
-            "no_proxy={{user `no_proxy`}}"
-          ],
-          "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
-          "expect_disconnect": true,
-          "scripts": [
-              "scripts/install.sh", 
-              "scripts/vagrant-ssh-key.sh"  
-          ],
-          "type": "shell"
+            "type": "shell",
+            "execute_command": "{{ .Vars }} COUNTRY={{ user `country` }} sudo -E -S bash '{{ .Path }}'",
+            "expect_disconnect": true,
+            "script": "scripts/install-base.sh"
+        },
+        {
+            "only": ["virtualbox-iso"],
+            "type": "shell",
+            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "script": "scripts/install-virtualbox.sh"
+        },
+        {
+            "type": "shell",
+            "execute_command": "{{ .Vars }} WRITE_ZEROS={{ user `write_zeros` }} sudo -E -S bash '{{ .Path }}'",
+            "script": "scripts/cleanup.sh"
         }
       ],
     "variables": {
@@ -77,7 +80,8 @@
         "iso_url": "iso/archlinux-2020.12.01-x86_64.iso",
         "iso_checksum": "aea95a15c9f034d10e665247cfe782bccb5b306e",
         "ssh_timeout": "30m",
-        "boot_wait": "10s"
-        
+        "boot_wait": "10s",
+        "country": "US",
+        "write_zeros": "true"      
     }
 }
