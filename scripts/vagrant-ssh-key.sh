@@ -1,14 +1,16 @@
-#!/bin/bash -eux
+#!/usr/bin/bash -x
 
-pubkey_url="https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub";
-mkdir -p $HOME_DIR/.ssh;
-if command -v wget >/dev/null 2>&1; then
-    wget --no-check-certificate "$pubkey_url" -O $HOME_DIR/.ssh/authorized_keys;
-elif command -v curl >/dev/null 2>&1; then
-    curl --insecure --location "$pubkey_url" > $HOME_DIR/.ssh/authorized_keys;
-else
-    echo "Cannot download vagrant public key";
-    exit 1;
-fi
-chown -R vagrant $HOME_DIR/.ssh;
-chmod -R go-rwsx $HOME_DIR/.ssh;
+# VirtualBox Guest Additions
+# https://wiki.archlinux.org/index.php/VirtualBox/Install_Arch_Linux_as_a_guest
+echo ">>>> install-virtualbox.sh: Installing VirtualBox Guest Additions and NFS utilities.."
+/usr/bin/pacman -S --noconfirm virtualbox-guest-utils-nox nfs-utils
+
+echo ">>>> install-virtualbox.sh: Enabling VirtualBox Guest service.."
+/usr/bin/systemctl enable vboxservice.service
+
+echo ">>>> install-virtualbox.sh: Enabling RPC Bind service.."
+/usr/bin/systemctl enable rpcbind.service
+
+# Add groups for VirtualBox folder sharing
+echo ">>>> install-virtualbox.sh: Enabling VirtualBox Shared Folders.."
+/usr/bin/usermod --append --groups vagrant,vboxsf vagrant
