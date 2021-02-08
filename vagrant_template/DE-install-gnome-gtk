@@ -1,0 +1,56 @@
+#!/usr/bin/bash -ex
+
+#System update
+echo ">>>> UPDATING SYSTEM PACKAGES ..."
+sudo pacman -Syu
+echo ">>> Done!"
+
+#Installing XORG
+echo "STEP 1"
+echo ">>>> INSTALLING XORG ..."
+sudo pacman -S xorg xorg-server --noconfirm
+echo ">>> Done!"
+
+#Installing GNOME
+echo "STEP 2"
+echo ">>>> INSTALLING GNOME ..."
+sudo pacman -S gnome --noconfirm
+echo ">>> Done!"
+
+#Installing LIGHTDM
+echo "STEP 3"
+echo ">>>> INSTALLING LIGHTDM ..."
+sudo pacman -S lightdm --noconfirm
+echo ">>> Done!"
+
+#Enabling LightDM at startup
+echo "STEP 4"
+echo ">>> ENABLING LIGHTDM AT STARTUP ..."
+sudo systemctl enable lightdm
+echo ">>> Done!"
+
+#Installing GTK GREETER
+echo "STEP 5"
+echo ">>> INSTALLING GTK GREETER ..."
+sudo pacman -S lightdm-gtk-greeter --noconfirm
+echo ">>> Done!"
+
+#Configuring lightdm.conf default greeter
+echo "STEP 6"
+echo ">>> CHANGING LIGHTDM DEFAULT GREETER ..."
+echo
+echo "# 'greeter-session = Session to load for greeter REPLACED BY  # greeter-session = lightdm-gtk-greeter' in lightdm.conf" 
+
+OLD="# greeter-session = Session to load for greeter"
+NEW="greeter-session = lightdm-gtk-greeter"
+
+sed -i "s/$OLD/$NEW/g" /etc/lightdm/lightdm.conf
+
+echo ">>> Done!"
+
+echo  ">>> DESKTOP ENVIRONMENT HAS BEEN BUILT!"
+
+#Rebooting system to reflect changes and boot system with DE
+echo "FINAL STEP"
+echo ">>> REBOOTING ..."
+sudo reboot
