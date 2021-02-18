@@ -13,9 +13,6 @@ Vagrant.configure("2") do |config|
        ip:"172.24.0.3", 
        netmask:"255.255.255.0"
 
-    archlinux1201.vm.provision "shell",
-       path: "post-installation/gdm-gnome-install.sh"
-
        #ADD MORE VIDEO MEMORY IF NEEDED (1-256MB max)
        archlinux1201.vm.provider "virtualbox" do |vb|
        vb.customize ["modifyvm", :id, "--vram", "256"]
