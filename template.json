@@ -60,13 +60,13 @@
         },
         {
             "type": "shell",
-            "execute_command": "{{ .Vars }} WRITE_ZEROS={{ user `write_zeros` }} sudo -E -S bash '{{ .Path }}'",
-            "script": "scripts/cleanup.sh"
+            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "script": "scripts/install-gdm-gnome.sh"
         },
         {
             "type": "shell",
-            "execute_command": "",
-            "script": "scripts/install-gdm-gnome.sh"
+            "execute_command": "{{ .Vars }} WRITE_ZEROS={{ user `write_zeros` }} sudo -E -S bash '{{ .Path }}'",
+            "script": "scripts/cleanup.sh"
         }
       ],
     "variables": {
