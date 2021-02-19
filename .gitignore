@@ -1,4 +1,3 @@
+.vagrant/
 output/
 packer_cache/
-iso/
-.DS_Store
