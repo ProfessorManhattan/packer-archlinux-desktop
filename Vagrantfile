@@ -5,16 +5,15 @@ Vagrant.configure("2") do |config|
 
   config.ssh.insert_key = false
 
-  config.vm.define "archlinux1201" do |archlinux1201|
-    archlinux1201.vm.box="snowflake/archlinux"
-    archlinux1201.vm.hostname = "archlinux64"
-    
-    archlinux1201.vm.network "private_network",
-       ip:"172.24.0.3", 
+  config.vm.define "archlinux" do |archlinux|
+    archlinux.vm.box="ProfessorManhattan/Molecule-Archlinux-20.12.01"
+    archlinux.vm.hostname = "vagrant-archlinux"
+
+    archlinux.vm.network "private_network",
+       ip:"172.24.24.3",
        netmask:"255.255.255.0"
 
-       #ADD MORE VIDEO MEMORY IF NEEDED (1-256MB max)
-       archlinux1201.vm.provider "virtualbox" do |vb|
+    archlinux.vm.provider "virtualbox" do |vb|
        vb.customize ["modifyvm", :id, "--vram", "256"]
     end
   end
