@@ -1,7 +1,7 @@
 {
   "variables": {
     "boot_wait": "10s",
-    "box_basename": "Archlinux-Desktop",
+    "box_basename": "Base-Archlinux-Desktop",
     "build_directory": "output",
     "country": "US",
     "cpus": "2",

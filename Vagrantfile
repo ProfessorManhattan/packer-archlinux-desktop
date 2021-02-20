@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
 
   config.vm.define "archlinux" do |archlinux|
-    archlinux.vm.box="ProfessorManhattan/Archlinux-Desktop"
+    archlinux.vm.box="ProfessorManhattan/Base-Archlinux-Desktop"
     archlinux.vm.box="20.02.01"
     archlinux.vm.hostname = "vagrant-archlinux"
     archlinux.vm.network "private_network",
