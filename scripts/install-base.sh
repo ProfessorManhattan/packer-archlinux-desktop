@@ -3,6 +3,12 @@
 # stop on errors
 set -eu
 
+if [[ $PACKER_BUILDER_TYPE == "qemu" ]]; then
+  DISK='/dev/vda'
+else
+  DISK='/dev/sda'
+fi
+
 FQDN='vagrant-arch.vagrantup.com'
 KEYMAP='us'
 LANGUAGE='en_US.UTF-8'

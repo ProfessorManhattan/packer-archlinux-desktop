@@ -11,8 +11,8 @@
     "http_directory": "http",
     "http_proxy": "{{ env `HTTP_PROXY` }}",
     "https_proxy": "{{ env `HTTPS_PROXY` }}",
-    "iso_checksum": "https://mirror.arizona.edu/archlinux/iso/latest/sha1sums.txt",
-    "iso_name": "archlinux-2021.02.01-x86_64.iso",
+    "iso_checksum": "eb3b4995be6db3109e15c70a2ca1a6a9f76daf41",
+    "iso_name": "archlinux-2020.12.01-x86_64.iso",
     "iso_url": "https://mirror.arizona.edu/archlinux/iso/latest/archlinux-2021.02.01-x86_64.iso",
     "iso_version": "2021.02.01",
     "memory": "4096",
@@ -70,7 +70,10 @@
   ],
   "provisioners": [
     {
-      "execute_command": "{{ .Vars }} COUNTRY={{ user `country` }} sudo -E -S bash '{{ .Path }}'",
+      "environment_vars": [
+        "COUNTRY={{ user `country` }}"
+      ],
+      "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "expect_disconnect": true,
       "script": "scripts/install-base.sh",
       "type": "shell"
@@ -84,13 +87,15 @@
       "type": "shell"
     },
     {
+      "environment_vars": [
+        "WRITE_ZEROS={{ user `write_zeros` }}"
+      ],
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-      "script": "scripts/install-gdm-gnome.sh",
-      "type": "shell"
-    },
-    {
-      "execute_command": "{{ .Vars }} WRITE_ZEROS={{ user `write_zeros` }} sudo -E -S bash '{{ .Path }}'",
-      "script": "scripts/cleanup.sh",
+      "expect_disconnect": true,
+      "scripts": [
+        "scripts/install-gdm-gnome.sh",
+        "scripts/cleanup.sh"
+      ],
       "type": "shell"
     }
   ]
