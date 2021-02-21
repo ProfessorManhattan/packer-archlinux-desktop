@@ -12,5 +12,5 @@ Run the following command to build a `.box` file that Vagrant can use:
 
 ```
 packer validate template.json
-packer build template.json
+packer build -only=virtualbox-iso template.json
 ```
