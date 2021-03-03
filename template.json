@@ -7,7 +7,7 @@
     "compression_level": "9",
     "country": "US",
     "cpus": "2",
-    "description_name": "Archlinux Desktop",
+    "description": "Archlinux Desktop",
     "disk_size": "80000",
     "guest_additions_url": "",
     "headless": "false",

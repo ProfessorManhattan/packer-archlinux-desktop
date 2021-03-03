@@ -1,4 +1,4 @@
-<!-- ⚠️ This README has been generated from the file(s) "./modules/docs/blueprint-readme.md" ⚠️--><h1 align="center">Packer Template for variables.description</h1>
+<!-- ⚠️ This README has been generated from the file(s) "./modules/docs/blueprint-readme.md" ⚠️--><h1 align="center">Packer Template for Archlinux Desktop</h1>
 
 <div align="center">
   <h4>
@@ -27,7 +27,7 @@
 </p>
 
 <p align="center">
-  <b>Packer project that builds minimal VagrantUp variables.description boxes</b></br>
+  <b>Packer project that builds minimal VagrantUp Archlinux Desktop boxes</b></br>
 </p>
 
 
@@ -48,9 +48,9 @@
 
 ## ➤ Overview
 
-This repository contains the source code used to automatically build minimal variables.description VM images. The build process closely imitates the same process used by [chef/bento](https://github.com/chef/bento). In fact, you will see that most of the `scripts/` folder is symlinked to a chef/bento submodule.
+This repository contains the source code used to automatically build minimal Archlinux Desktop VM images. The build process closely imitates the same process used by [chef/bento](https://github.com/chef/bento). In fact, you will see that most of the `scripts/` folder is symlinked to a chef/bento submodule.
 
-This repository automates most of the process of keeping our variables.description VM images up-to-date with the latest upstream source by:
+This repository automates most of the process of keeping our Archlinux Desktop VM images up-to-date with the latest upstream source by:
 
 * Using the vagrant-cloud post-processor to automatically upload the box after it is built
 * Automating the retrieval of the source ISO file and checksum file by using another project of ours called [LatestOS](https://pypi.org/project/latestos/)
@@ -94,7 +94,7 @@ The default username and password are both *vagrant*.
 
 ## ➤ Creating Your Own Box
 
-You can quickly use this project to create your own minimal variables.description box by:
+You can quickly use this project to create your own minimal Archlinux Desktop box by:
 
 1. Creating a box on VagrantUp titled Base-Archlinux-Desktop - *Note: You can change the title by modifying the `"box_basename"` variable in `template.json`*
 2. Changing the `"vagrantup_user"` variable in `template.json` to your VagrantUp username
@@ -106,7 +106,7 @@ export VAGRANT_CLOUD_TOKEN=YourTokenHere
 packer build -only=virtualbox-iso template.json
 ```
 
-The example above will build a VirtualBox variables.description box and upload it to your VagrantUp box repository *(that you have to create before running the script that is above)*. If you want to build the box for another provider then look at the `template.json` in the `"builders"` section for the types of boxes you can create (e.g. virtualbox-iso, vmware-iso, parallels-iso, qemu).
+The example above will build a VirtualBox Archlinux Desktop box and upload it to your VagrantUp box repository *(that you have to create before running the script that is above)*. If you want to build the box for another provider then look at the `template.json` in the `"builders"` section for the types of boxes you can create (e.g. virtualbox-iso, vmware-iso, parallels-iso, qemu).
 
 If you do not want your box to be automatically uploaded to VagrantUp after you build it with Packer then you will need to remove the `"vagrant-cloud"` section under `"post-processors"`.
 
@@ -115,7 +115,7 @@ If you do not want your box to be automatically uploaded to VagrantUp after you 
 
 ## ➤ Updating Your Box
 
-If a new release of the variables.description system is available, you can update your VagrantUp box. You can do this by changing the `"iso_checksum_url"`, `"iso_url"`, and `"iso_version"` variables in the `template.json` file. After that, run `packer build -only=virtualbox-iso template.json` and you should be golden.
+If a new release of the Archlinux Desktop system is available, you can update your VagrantUp box. You can do this by changing the `"iso_checksum_url"`, `"iso_url"`, and `"iso_version"` variables in the `template.json` file. After that, run `packer build -only=virtualbox-iso template.json` and you should be golden.
 
 You can also automate the process of retrieving the latest ISO and checksum URL by leveraging our [LatestOS](https://pypi.org/project/latestos/) Python package. This can be accomplished by running the following code with Python and pip already installed:
 
