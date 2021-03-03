@@ -22,7 +22,7 @@ First of all, thanks for visiting this page 😊❤️! We are totally ecstatic 
 
 ## ➤ Code of Conduct
 
-This project and everyone participating in it is governed by the [Code of Conduct](https://github.com/atom/atom/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [contact_email](mailto:contact_email).
+This project and everyone participating in it is governed by the [Code of Conduct](https://github.com/atom/atom/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [help@megabyte.space](mailto:help@megabyte.space).
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#overview)
@@ -53,7 +53,7 @@ We aim to support the following virtualization platforms:
 
 ## ➤ Philosophy
 
-We created these images because the desktop versions of VagrantUp boxes are sparse. During development it's useful to be able to navigate through an operating system using a GUI. The GUI should be:
+We created these images because the desktop versions of VagrantUp boxes are sparse. During development it's useful to be able to navigate through an operating system using a GUI. The VM images should be:
 
 * Minimal and include no bloatware
 * Small in size so people can download/provision their VM quicker

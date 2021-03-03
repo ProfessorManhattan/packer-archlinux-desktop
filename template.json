@@ -17,6 +17,7 @@
     "iso_checksum_url": "https://mirror.arizona.edu/archlinux/iso/latest/sha1sums.txt",
     "iso_url": "https://mirror.arizona.edu/archlinux/iso/latest/archlinux-2021.02.01-x86_64.iso",
     "iso_version": "2021.02.01",
+    "latestos_tag": "arch",
     "memory": "2048",
     "no_proxy": "{{ env `NO_PROXY` }}",
     "ssh_password": "vagrant",

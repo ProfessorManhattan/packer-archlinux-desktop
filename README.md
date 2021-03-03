@@ -87,6 +87,8 @@ If you have VirtualBox and Vagrant installed, you can quickly spin up the finish
 vagrant up
 ```
 
+The default username and password are both *vagrant*.
+
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#creating-your-own-box)
 
@@ -119,7 +121,7 @@ You can also automate the process of retrieving the latest ISO and checksum URL 
 
 ```shell
 pip3 install latestos
-latestos variables.latestos_tag # Options include arch, centos, debian, fedora, and ubuntu
+latestos arch # Options include arch, centos, debian, fedora, and ubuntu
 packer build -only=virtualbox-iso template.json
 ```
 
