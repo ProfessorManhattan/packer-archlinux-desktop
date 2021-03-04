@@ -3,7 +3,6 @@
 
 Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
-
   config.vm.define "archlinux" do |archlinux|
     archlinux.vm.box="ProfessorManhattan/Base-Archlinux-Desktop"
     archlinux.vm.box="20.02.01"
@@ -15,7 +14,6 @@ Vagrant.configure("2") do |config|
        vb.customize ["modifyvm", :id, "--vram", "256"]
     end
   end
-
   config.vm.provision "ansible" do |ansible|
     ansible.compatibility_mode = "2.0"
     ansible.inventory_path = "../../inventories/vagrant.yml"
