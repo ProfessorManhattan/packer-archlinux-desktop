@@ -23,7 +23,8 @@
     "test:shellcheck": "shellcheck scripts/*.custom.sh",
     "test:spelling": "cspell \"{README.md,CONTRIBUTING.md,CHANGELOG.md,.github/*.md,.gitlab/*.md,template.json,Vagrantfile}\"",
     "update": "bash .update.sh",
-    "version": "standard-version --no-verify"
+    "version": "standard-version --no-verify",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "cspell": "^5.3.3",
