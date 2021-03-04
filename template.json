@@ -134,9 +134,7 @@
   "provisioners": [
     {
       "type": "shell",
-      "environment_vars": [
-        "COUNTRY={{ user `country` }}"
-      ],
+      "environment_vars": ["COUNTRY={{ user `country` }}"],
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "expect_disconnect": true,
       "script": "scripts/base.sh"
@@ -144,38 +142,27 @@
     {
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-      "only": [
-        "parallels-iso"
-      ],
+      "only": ["parallels-iso"],
       "script": "scripts/parallels.sh"
     },
     {
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-      "only": [
-        "virtualbox-iso"
-      ],
+      "only": ["virtualbox-iso"],
       "script": "scripts/virtualbox.sh"
     },
     {
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-      "only": [
-        "vmware-iso"
-      ],
+      "only": ["vmware-iso"],
       "script": "scripts/vmware.sh"
     },
     {
       "type": "shell",
-      "environment_vars": [
-        "WRITE_ZEROS={{ user `write_zeros` }}"
-      ],
+      "environment_vars": ["WRITE_ZEROS={{ user `write_zeros` }}"],
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "expect_disconnect": true,
-      "scripts": [
-        "scripts/gnome.sh",
-        "scripts/cleanup.sh"
-      ]
+      "scripts": ["scripts/gnome.sh", "scripts/cleanup.sh"]
     }
   ]
 }
