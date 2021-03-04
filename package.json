@@ -14,6 +14,7 @@
     "build:vmware": "packer build -only=vmware-iso template.json",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"{scripts/*.sh,*.json}\" --write",
+    "info": "npm-scripts-info",
     "launch": "vagrant up",
     "postinstall": "husky install && bash .update.sh",
     "prepare-release": "run-s update test version",
@@ -23,8 +24,7 @@
     "test:shellcheck": "shellcheck scripts/*.custom.sh",
     "test:spelling": "cspell \"{README.md,CONTRIBUTING.md,CHANGELOG.md,.github/*.md,.gitlab/*.md,template.json,Vagrantfile}\"",
     "update": "bash .update.sh",
-    "version": "standard-version --no-verify",
-    "prepare": "husky install"
+    "version": "standard-version --no-verify"
   },
   "devDependencies": {
     "cspell": "^5.3.3",
@@ -51,6 +51,7 @@
     "build:virtualbox": "Build a VirtualBox image",
     "build:vmware": "Build a VMWare image",
     "commit": "The preferred way of running git commit (instead of git commit, we prefer running 'npm run commit')",
+    "info": "Logs descriptions of all the npm tasks",
     "fix": "Automatically fix formatting errors",
     "launch": "Runs 'vagrant up' to automatically spin up the VM",
     "prepare-release": "Updates the CHANGELOG with commits made using 'npm run commit'",
