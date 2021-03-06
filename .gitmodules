@@ -10,3 +10,7 @@
 	path = .modules/shared
 	url = https://gitlab.com/megabyte-space/common/shared.git
 	branch = master
+[submodule ".modules/packer"]
+	path = .modules/packer
+	url = https://gitlab.com/megabyte-space/common/packer.git
+	branch = master
