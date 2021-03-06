@@ -3,7 +3,7 @@
   "description": "Node files that aid in development of Packer projects",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
-  "version": "\"1.0.0\"",
+  "version": "1.5.0",
   "scripts": {
     "build": "packer build template.json",
     "build:hyperv": "packer build -only=kvm template.json",
