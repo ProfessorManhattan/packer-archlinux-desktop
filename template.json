@@ -137,32 +137,32 @@
       "environment_vars": ["COUNTRY={{ user `country` }}"],
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "expect_disconnect": true,
-      "script": "scripts/base.sh"
+      "script": "scripts/base.custom.sh"
     },
     {
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "only": ["parallels-iso"],
-      "script": "scripts/parallels.sh"
+      "script": "scripts/parallels.custom.sh"
     },
     {
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "only": ["virtualbox-iso"],
-      "script": "scripts/virtualbox.sh"
+      "script": "scripts/virtualbox.custom.sh"
     },
     {
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "only": ["vmware-iso"],
-      "script": "scripts/vmware.sh"
+      "script": "scripts/vmware.custom.sh"
     },
     {
       "type": "shell",
       "environment_vars": ["WRITE_ZEROS={{ user `write_zeros` }}"],
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "expect_disconnect": true,
-      "scripts": ["scripts/gnome.sh", "scripts/cleanup.sh"]
+      "scripts": ["scripts/gnome.custom.sh", "scripts/cleanup.custom.sh"]
     }
   ]
 }
