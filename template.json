@@ -59,7 +59,7 @@
       "boot_wait": "{{ user `boot_wait` }}",
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{ user `disk_size` }}",
-      "headless": "{{ user `headless`}}",
+      "headless": "{{ user `headless` }}",
       "http_directory": "{{ user `http_directory` }}",
       "iso_checksum": "file:{{ user `iso_checksum_url` }}",
       "iso_url": "{{ user `iso_url` }}",
@@ -126,7 +126,7 @@
         "type": "vagrant-cloud",
         "access_token": "{{ user `vagrantup_token` }}",
         "box_tag": "{{ user `vagrantup_user` }}/{{ user `box_basename` }}",
-        "version_description": "{{ user `description_name` }} version {{ user `iso_version` }}",
+        "version_description": "{{ user `description` }} version {{ user `iso_version` }}",
         "version": "{{ user `iso_version` }}"
       }
     ]
