@@ -2,7 +2,7 @@
   "variables": {
     "boot_command": "<enter><wait10><wait10><wait10><wait10>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/enable-ssh.sh<enter><wait5>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5>/usr/bin/bash ./enable-ssh.sh<enter>",
     "boot_wait": "10s",
-    "box_basename": "Base-Archlinux-Desktop",
+    "box_basename": "Archlinux-Desktop",
     "build_directory": "build",
     "compression_level": "9",
     "country": "US",
