@@ -6,7 +6,7 @@
   </center>
 </div>
 <div align="center">
-  <center><h1 align="center">Packer Template: Archlinux Desktop 2021.05.01 Test</h1></center>
+  <center><h1 align="center">Packer Template: Archlinux Desktop 2021.05.01</h1></center>
 </div>
 
 <div align="center">
