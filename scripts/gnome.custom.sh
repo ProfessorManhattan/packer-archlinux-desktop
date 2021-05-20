@@ -16,39 +16,39 @@ echo ">>> Done!"
 echo ">>>> INSTALLING DISPLAY MANAGER, GNOME desktop ..."
 
 PKGS=(
-        'gnome'                  
-        'gnome-tweaks'           
-        'gnome'                 
-        'nautilus-sendto'               
-        'gnome-nettool' 
-        'gnome-usage' 
-        'adwaita-icon-theme' 
-        'chrome-gnome-shell'
-        'xdg-user-dirs-gtk'
-        'fwupd'
-        'arc-gtk-theme'
-        'gdm'
+  'gnome'
+  'gnome-tweaks'
+  'gnome'
+  'nautilus-sendto'
+  'gnome-nettool'
+  'gnome-usage'
+  'adwaita-icon-theme'
+  'chrome-gnome-shell'
+  'xdg-user-dirs-gtk'
+  'fwupd'
+  'arc-gtk-theme'
+  'gdm'
 )
 
 for PKG in "${PKGS[@]}"; do
-    echo "INSTALLING: ${PKG}"
-    sudo pacman -S "$PKG" --noconfirm
+  echo "INSTALLING: ${PKG}"
+  sudo pacman -S "$PKG" --noconfirm
 done
 
 echo ">>> Done!"
 
 echo ">>> INSTALL APPLICATIONS ..."
 PKGS2=(
-        'firefox'                  
-        'archlinux-wallpaper'           
-        'xscreensaver'                 
-        'leafpad'
+  'firefox'
+  'archlinux-wallpaper'
+  'xscreensaver'
+  'leafpad'
 )
 
 for PKG2 in "${PKGS2[@]}"; do
-    echo "INSTALLING: ${PKG2}"
-    sudo pacman -S "$PKG2" --needed --noconfirm
-done 
+  echo "INSTALLING: ${PKG2}"
+  sudo pacman -S "$PKG2" --needed --noconfirm
+done
 
 echo ">>> Done!"
 

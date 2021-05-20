@@ -1,9 +1,9 @@
 {
   "name": "@megabytelabs/packer-archlinux-desktop",
+  "version": "1.5.0",
   "description": "An automated Archlinux Desktop (currently, version ISO_VERSION) Packer project that builds boxes using the latest Archlinux release on a regular basis",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
-  "version": "1.5.0",
   "scripts": {
     "build": "trash build && packer build template.json",
     "build:kvm": "trash build && packer build -only=qemu template.json",

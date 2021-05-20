@@ -41,7 +41,7 @@ echo ">>>> install-base.sh: Mounting ${ROOT_PARTITION} to ${TARGET_DIR}.."
 /usr/bin/mount -o noatime,errors=remount-ro ${ROOT_PARTITION} ${TARGET_DIR}
 
 echo ">>>> install-base.sh: Setting pacman ${COUNTRY} mirrors.."
-curl -s "$MIRRORLIST" |  sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist
+curl -s "$MIRRORLIST" | sed 's/^#Server/Server/' >/etc/pacman.d/mirrorlist
 
 echo ">>>> install-base.sh: Bootstrapping the base installation.."
 /usr/bin/pacstrap ${TARGET_DIR} base base-devel linux
@@ -57,13 +57,13 @@ echo ">>>> install-base.sh: Configuring syslinux.."
 /usr/bin/sed -i 's/TIMEOUT 50/TIMEOUT 10/' "${TARGET_DIR}/boot/syslinux/syslinux.cfg"
 
 echo ">>>> install-base.sh: Generating the filesystem table.."
-/usr/bin/genfstab -p ${TARGET_DIR} >> "${TARGET_DIR}/etc/fstab"
+/usr/bin/genfstab -p ${TARGET_DIR} >>"${TARGET_DIR}/etc/fstab"
 
 echo ">>>> install-base.sh: Generating the system configuration script.."
 /usr/bin/install --mode=0755 /dev/null "${TARGET_DIR}${CONFIG_SCRIPT}"
 
-CONFIG_SCRIPT_SHORT=`basename "$CONFIG_SCRIPT"`
-cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
+CONFIG_SCRIPT_SHORT=$(basename "$CONFIG_SCRIPT")
+cat <<-EOF >"${TARGET_DIR}${CONFIG_SCRIPT}"
   echo ">>>> ${CONFIG_SCRIPT_SHORT}: Configuring hostname, timezone, and keymap.."
   echo '${FQDN}' > /etc/hostname
   /usr/bin/ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
