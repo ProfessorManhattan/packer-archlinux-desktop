@@ -64,7 +64,7 @@
   </p>
 </div>
 
-> </br><h3 align="center">**An automated Archlinux Desktop (currently, version ISO_VERSION) Packer project that builds boxes using the latest Archlinux release on a regular basis**</h3></br>
+> </br><h3 align="center">**An automated Archlinux Desktop (currently, version 2021.05.01) Packer project that builds boxes using the latest Archlinux release on a regular basis**</h3></br>
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
