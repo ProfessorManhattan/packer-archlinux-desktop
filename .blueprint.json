@@ -1,0 +1,9 @@
+{
+  "badge_style": "flat",
+  "description_template": "Archlinux Desktop ISO_VERSION",
+  "description_template_package": "An automated Archlinux Desktop (currently, version ISO_VERSION) Packer project that builds boxes using the latest Archlinux release on a regular basis",
+  "hostname": "vagrant-archlinux",
+  "slug": "archlinux-desktop",
+  "vagrant_tag": "arch",
+  "version_description": "Compact Archlinux Desktop ISO_VERSION image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details."
+}

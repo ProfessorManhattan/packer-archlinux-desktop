@@ -7,7 +7,7 @@
     "compression_level": "9",
     "country": "US",
     "cpus": "2",
-    "description": "Archlinux Desktop",
+    "description": "Archlinux Desktop 2021.05.01",
     "disk_size": "80000",
     "guest_additions_url": "",
     "headless": "false",
@@ -15,8 +15,8 @@
     "http_proxy": "{{ env `HTTP_PROXY` }}",
     "https_proxy": "{{ env `HTTPS_PROXY` }}",
     "iso_checksum_url": "https://mirror.arizona.edu/archlinux/iso/latest/sha1sums.txt",
-    "iso_url": "https://mirror.arizona.edu/archlinux/iso/latest/archlinux-2021.02.01-x86_64.iso",
-    "iso_version": "2021.02.01",
+    "iso_url": "https://mirror.arizona.edu/archlinux/iso/latest/archlinux-2021.05.01-x86_64.iso",
+    "iso_version": "2021.05.01",
     "latestos_tag": "arch",
     "memory": "2048",
     "no_proxy": "{{ env `NO_PROXY` }}",
@@ -26,9 +26,10 @@
     "ssh_timeout": "30m",
     "ssh_username": "vagrant",
     "vagrantup_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
-    "vagrantup_user": "ProfessorManhattan",
+    "vagrantup_user": "Megabyte",
     "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
-    "write_zeros": "true"
+    "write_zeros": "true",
+    "version_description": "Compact Archlinux Desktop 2021.05.01 image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details."
   },
   "builders": [
     {
@@ -42,7 +43,7 @@
       "iso_checksum": "file:{{ user `iso_checksum_url` }}",
       "iso_url": "{{ user `iso_url` }}",
       "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}",
+      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-Parallels",
       "parallels_tools_flavor": "lin",
       "parallels_tools_mode": "attach",
       "prlctl_version_file": ".prlctl_version",
@@ -64,7 +65,7 @@
       "iso_checksum": "file:{{ user `iso_checksum_url` }}",
       "iso_url": "{{ user `iso_url` }}",
       "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}",
+      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM",
       "shutdown_command": "{{ user `shutdown_command` }}",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_port": "{{ user `ssh_port` }}",
@@ -86,7 +87,7 @@
       "iso_checksum": "file:{{ user `iso_checksum_url` }}",
       "iso_url": "{{ user `iso_url` }}",
       "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}",
+      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VirtualBox",
       "shutdown_command": "{{ user `shutdown_command` }}",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_port": "{{ user `ssh_port` }}",
@@ -106,7 +107,7 @@
       "iso_checksum": "file:{{ user `iso_checksum_url` }}",
       "iso_url": "{{ user `iso_url` }}",
       "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-{{ .Provider }}",
+      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VMWare",
       "shutdown_command": "{{ user `shutdown_command` }}",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_port": "{{ user `ssh_port` }}",
@@ -120,7 +121,8 @@
       {
         "type": "vagrant",
         "compression_level": "{{ user `compression_level` }}",
-        "output": "{{ user `build_directory` }}/{{ user `box_basename` }}.{{ .Provider }}.box"
+        "output": "{{ user `build_directory` }}/{{ user `box_basename` }}.{{ .Provider }}.box",
+        "vagrantfile_template": "{{ template_dir }}/Vagrantfile"
       },
       {
         "type": "vagrant-cloud",
