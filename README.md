@@ -6,7 +6,7 @@
   </center>
 </div>
 <div align="center">
-  <center><h1 align="center">Packer Template: Archlinux Desktop 2021.05.01 TEst</h1></center>
+  <center><h1 align="center">Packer Template: Archlinux Desktop 2021.05.01</h1></center>
 </div>
 
 <div align="center">
@@ -72,7 +72,6 @@
 
 ## ➤ Table of Contents
 
-- [➤ Table of Contents](#-table-of-contents)
 - [➤ Overview](#-overview)
   - [Supported Virtualization Platforms](#supported-virtualization-platforms)
 - [➤ Requirements](#-requirements)
