@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :arch do |arch|
     arch.vm.box="Megabyte/Archlinux-Desktop"
     arch.vm.hostname = "vagrant-archlinux"
-    arch.vm.name = "Archlinux Desktop 2021.05.01"
+    #arch.vm.name = "Archlinux Desktop 2021.05.01" TODO: Figure out how to set name globally if possible
     arch.vm.network :forwarded_port, guest: 22, host: 58022, id: "ssh", auto_correct: true
     arch.vm.network :forwarded_port, guest: 3389, host: 53389, id: "rdp", auto_correct: true
     arch.vm.network :forwarded_port, guest: 443, host: 58443, id: "https", auto_correct: true
