@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
     arch.vm.provider :parallels do |v|
       v.cpus = 2
       v.memory = 4096
-      v.name = "Ubuntu Desktop"
+      v.name = "Archlinux Desktop 2021.05.01"
       v.update_guest_tools = true
     end
 
