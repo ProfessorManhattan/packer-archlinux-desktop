@@ -7,7 +7,7 @@
     "compression_level": "9",
     "country": "US",
     "cpus": "2",
-    "description": "Archlinux Desktop 2021.05.01",
+    "description": "Archlinux Desktop 2021.06.01",
     "disk_size": "80000",
     "guest_additions_url": "",
     "headless": "false",
@@ -15,8 +15,8 @@
     "http_proxy": "{{ env `HTTP_PROXY` }}",
     "https_proxy": "{{ env `HTTPS_PROXY` }}",
     "iso_checksum_url": "https://mirror.arizona.edu/archlinux/iso/latest/sha1sums.txt",
-    "iso_url": "https://mirror.arizona.edu/archlinux/iso/latest/archlinux-2021.05.01-x86_64.iso",
-    "iso_version": "2021.05.01",
+    "iso_url": "https://mirror.arizona.edu/archlinux/iso/latest/archlinux-2021.06.01-x86_64.iso",
+    "iso_version": "2021.06.01",
     "latestos_tag": "arch",
     "memory": "2048",
     "no_proxy": "{{ env `NO_PROXY` }}",
@@ -27,9 +27,8 @@
     "ssh_username": "vagrant",
     "vagrantup_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
     "vagrantup_user": "Megabyte",
-    "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
     "write_zeros": "true",
-    "version_description": "Compact Archlinux Desktop 2021.05.01 image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details."
+    "version_description": "Compact Archlinux Desktop 2021.06.01 image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details."
   },
   "builders": [
     {
@@ -52,7 +51,7 @@
       "ssh_port": "{{ user `ssh_port` }}",
       "ssh_timeout": "{{ user `ssh_timeout` }}",
       "ssh_username": "{{ user `ssh_username` }}",
-      "vm_name": "{{ user `vm_name` }}"
+      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
     },
     {
       "type": "qemu",
@@ -71,7 +70,7 @@
       "ssh_port": "{{ user `ssh_port` }}",
       "ssh_timeout": "{{ user `ssh_timeout` }}",
       "ssh_username": "{{ user `ssh_username` }}",
-      "vm_name": "{{ user `vm_name` }}"
+      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
     },
     {
       "type": "virtualbox-iso",
@@ -93,7 +92,7 @@
       "ssh_port": "{{ user `ssh_port` }}",
       "ssh_timeout": "{{ user `ssh_timeout` }}",
       "ssh_username": "{{ user `ssh_username` }}",
-      "vm_name": "{{ user `vm_name` }}"
+      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
     },
     {
       "type": "vmware-iso",
@@ -113,7 +112,7 @@
       "ssh_port": "{{ user `ssh_port` }}",
       "ssh_timeout": "{{ user `ssh_timeout` }}",
       "ssh_username": "{{ user `ssh_username` }}",
-      "vm_name": "{{ user `vm_name` }}"
+      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
     }
   ],
   "post-processors": [

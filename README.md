@@ -1,12 +1,12 @@
 <!-- ⚠️ This README has been generated from the file(s) "./.modules/docs/blueprint-readme.md" ⚠️--><div align="center">
   <center>
-    <a href="https://gitlab.com/megabyte-labs/packer/archlinux-desktop" title="Archlinux Desktop 2021.05.01 GitLab page" target="_blank">
-      <img width="100" height="100" alt="Archlinux Desktop 2021.05.01 logo" src="./logo.png" />
+    <a href="https://gitlab.com/megabyte-labs/packer/archlinux-desktop" title="Archlinux Desktop 2021.06.01 GitLab page" target="_blank">
+      <img width="100" height="100" alt="Archlinux Desktop 2021.06.01 logo" src="./logo.png" />
     </a>
   </center>
 </div>
 <div align="center">
-  <center><h1 align="center">Packer Template: Archlinux Desktop 2021.05.01</h1></center>
+  <center><h1 align="center">Packer Template: Archlinux Desktop 2021.06.01</h1></center>
 </div>
 
 <div align="center">
@@ -14,7 +14,7 @@
     <a href="https://megabyte.space" title="Megabyte Labs homepage" target="_blank">
       <img src="https://gitlab.com/megabyte-labs/assets/-/raw/master/svg/home-solid.svg" />
     </a>
-    <a href="https://app.vagrantup.com/Megabyte/boxes/Archlinux-Desktop" title="Archlinux Desktop 2021.05.01 box on VagrantUp.com" target="_blank">
+    <a href="https://app.vagrantup.com/Megabyte/boxes/Archlinux-Desktop" title="Archlinux Desktop 2021.06.01 box on VagrantUp.com" target="_blank">
       <img height="50" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/svg/vagrant.svg" />
     </a>
     <a href="https://gitlab.com/megabyte-labs/packer/archlinux-desktop/-/blob/master/CONTRIBUTING.md" title="Learn about contributing" target="_blank">
@@ -64,7 +64,7 @@
   </p>
 </div>
 
-> </br><h3 align="center">**An automated Archlinux Desktop (currently, version 2021.05.01) Packer project that builds boxes using the latest Archlinux release on a regular basis**</h3></br>
+> </br><h3 align="center">**An automated Archlinux Desktop (currently, version 2021.06.01) Packer project that builds boxes using the latest Archlinux release on a regular basis**</h3></br>
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
@@ -85,9 +85,9 @@
 
 ## ➤ Overview
 
-This repository contains the source code used to automatically build minimal Archlinux Desktop 2021.05.01 VM images. The build process closely imitates the same process used by [chef/bento](https://github.com/chef/bento). In fact, you will see that most of the `scripts/` folder is symlinked to a chef/bento submodule.
+This repository contains the source code used to automatically build minimal Archlinux Desktop 2021.06.01 VM images. The build process closely imitates the same process used by [chef/bento](https://github.com/chef/bento). In fact, you will see that most of the `scripts/` folder is symlinked to a chef/bento submodule.
 
-This repository automates most of the process of keeping our [Archlinux Desktop 2021.05.01 VM images](https://app.vagrantup.com/Megabyte/boxes/Archlinux-Desktop) up-to-date with the latest upstream source by:
+This repository automates most of the process of keeping our [Archlinux Desktop 2021.06.01 VM images](https://app.vagrantup.com/Megabyte/boxes/Archlinux-Desktop) up-to-date with the latest upstream source by:
 
 - Using the vagrant-cloud post-processor to automatically upload the box after it is built
 - Automating the retrieval of the source ISO file and checksum file by using another project of ours called [LatestOS](https://pypi.org/project/latestos/)
@@ -126,7 +126,7 @@ The default username and password are both _vagrant_.
 
 ## ➤ Creating Your Own Box
 
-You can quickly use this project to create your own minimal Archlinux Desktop 2021.05.01 box by:
+You can quickly use this project to create your own minimal Archlinux Desktop 2021.06.01 box by:
 
 1. Creating a box on VagrantUp titled Archlinux-Desktop (Note: The VagrantUp box name should match the `"box_basename"` in the `template.json` file.)
 2. Changing the `"vagrantup_user"` variable in `template.json` to your VagrantUp username
@@ -139,7 +139,7 @@ export VAGRANT_CLOUD_TOKEN=YourTokenHere
 packer build -only=virtualbox-iso template.json
 ```
 
-The example above will build a VirtualBox Archlinux Desktop 2021.05.01 box and upload it to your VagrantUp box repository _(that you have to create before running the script that is above)_. If you want to build the box for another provider then look at the `template.json` in the `"builders"` section for the types of boxes you can create (e.g. `virtualbox-iso`, `vmware-iso`, `parallels-iso`, `qemu`).
+The example above will build a VirtualBox Archlinux Desktop 2021.06.01 box and upload it to your VagrantUp box repository _(that you have to create before running the script that is above)_. If you want to build the box for another provider then look at the `template.json` in the `"builders"` section for the types of boxes you can create (e.g. `virtualbox-iso`, `vmware-iso`, `parallels-iso`, `qemu`).
 
 If you do not want your box to be automatically uploaded to VagrantUp after you build it with Packer then you will need to remove the `"vagrant-cloud"` section under `"post-processors"`. The section is wrapped in a nested array. If you are removing the `vagrant-cloud` post-processor, then the section no longer has to be placed in a nested array.
 
@@ -147,7 +147,7 @@ If you do not want your box to be automatically uploaded to VagrantUp after you 
 
 ## ➤ Updating Your Box
 
-If a new release of the Archlinux Desktop 2021.05.01 system is available, you can update your VagrantUp box. You can do this by changing the `"iso_checksum_url"`, `"iso_url"`, and `"iso_version"` variables in the `template.json` file. After that, run `packer build -only=virtualbox-iso template.json` and you should be golden.
+If a new release of the Archlinux Desktop 2021.06.01 system is available, you can update your VagrantUp box. You can do this by changing the `"iso_checksum_url"`, `"iso_url"`, and `"iso_version"` variables in the `template.json` file. After that, run `packer build -only=virtualbox-iso template.json` and you should be golden.
 
 You can also automate the process of retrieving the latest ISO and checksum URL by leveraging our [LatestOS](https://pypi.org/project/latestos/) Python package. This can be accomplished by running the following code with Python and pip already installed:
 

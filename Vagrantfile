@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
     os.vm.provider "hyperv" do |v|
       v.cpus = 2
       v.maxmemory = 4096
-      v.vmname = "Archlinux Desktop 2021.05.01"
+      v.vmname = "Archlinux Desktop 2021.06.01"
     end
 
     os.vm.provider "libvirt" do |v, override|
@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
     os.vm.provider "parallels" do |v|
       v.cpus = 2
       v.memory = 4096
-      v.name = "Archlinux Desktop 2021.05.01"
+      v.name = "Archlinux Desktop 2021.06.01"
       v.update_guest_tools = true
     end
 
@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
       v.customize ["setextradata", "global", "GUI/SuppressMessages", "all"]
       v.gui = true
       v.memory = 4096
-      v.name = "Archlinux Desktop 2021.05.01"
+      v.name = "Archlinux Desktop 2021.06.01"
     end
 
     os.vm.provider "vmware_fusion" do |v|

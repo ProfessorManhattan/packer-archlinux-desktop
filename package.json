@@ -1,7 +1,7 @@
 {
   "name": "@megabytelabs/packer-archlinux-desktop",
   "version": "1.5.0",
-  "description": "An automated Archlinux Desktop (currently, version 2021.05.01) Packer project that builds boxes using the latest Archlinux release on a regular basis",
+  "description": "An automated Archlinux Desktop (currently, version 2021.06.01) Packer project that builds boxes using the latest Archlinux release on a regular basis",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
