@@ -69,19 +69,18 @@
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 
 ## ➤ Table of Contents
 
-* [➤ Overview](#-overview)
-	* [Supported Virtualization Platforms](#supported-virtualization-platforms)
-* [➤ Requirements](#-requirements)
-* [➤ Quick Start](#-quick-start)
-* [➤ Creating Your Own Box](#-creating-your-own-box)
-* [➤ Updating Your Box](#-updating-your-box)
-* [➤ Contributing](#-contributing)
-* [➤ License](#-license)
+- [➤ Overview](#-overview)
+  - [Supported Virtualization Platforms](#supported-virtualization-platforms)
+- [➤ Requirements](#-requirements)
+- [➤ Quick Start](#-quick-start)
+- [➤ Creating Your Own Box](#-creating-your-own-box)
+- [➤ Updating Your Box](#-updating-your-box)
+- [➤ Contributing](#-contributing)
+- [➤ License](#-license)
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#overview)
 
@@ -104,7 +103,6 @@ This project supports creating boxes for the following virtualization platforms:
 - [VirtualBox](https://gitlab.com/megabyte-labs/ansible-roles/virtualbox) <!-- SUPPORTED_OS_VIRTUALBOX -->
 - [VMWare](https://gitlab.com/megabyte-labs/ansible-roles/vmware) <!-- SUPPORTED_OS_VMWARE -->
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#requirements)
 
 ## ➤ Requirements
@@ -112,7 +110,6 @@ This project supports creating boxes for the following virtualization platforms:
 - At least one of the above virtualization platforms installed ([VirtualBox](https://gitlab.com/megabyte-labs/ansible-roles/virtualbox) is a good starting point if you do not already have one of the platforms installed)
 - [Packer](https://gitlab.com/megabyte-labs/ansible-roles/packer)
 - [Vagrant](https://gitlab.com/megabyte-labs/ansible-roles/vagrant)
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#quick-start)
 
@@ -125,7 +122,6 @@ vagrant up
 ```
 
 The default username and password are both _vagrant_.
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#creating-your-own-box)
 
@@ -148,7 +144,6 @@ The example above will build a VirtualBox Archlinux Desktop 2021.06.01 box and u
 
 If you do not want your box to be automatically uploaded to VagrantUp after you build it with Packer then you will need to remove the `"vagrant-cloud"` section under `"post-processors"`. The section is wrapped in a nested array. If you are removing the `vagrant-cloud` post-processor, then the section no longer has to be placed in a nested array.
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#updating-your-box)
 
 ## ➤ Updating Your Box
@@ -162,7 +157,6 @@ pip3 install latestos
 latestos arch # Options include arch, centos, debian, fedora, and ubuntu
 packer build -only=virtualbox-iso template.json
 ```
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#contributing)
 
@@ -188,10 +182,8 @@ I create open source projects out of love. Although I have a job, shelter, and a
 
 </details>
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#license)
 
 ## ➤ License
 
 Copyright © 2021 [Megabyte LLC](https://megabyte.space). This project is [MIT](https://gitlab.com/megabyte-labs/packer/Archlinux-Desktop/-/raw/master/LICENSE) licensed.
-
