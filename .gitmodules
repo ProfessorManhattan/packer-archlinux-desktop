@@ -1,8 +1,8 @@
 [submodule ".modules/bento"]
-	path = .modules/bento
-	url = https://github.com/chef/bento.git
-	branch = master
+path = .modules/bento
+url = https://github.com/chef/bento.git
+branch = master
 [submodule ".common"]
-	path = .common
-	url = https://gitlab.com/megabyte-labs/common/packer.git
-	branch = master
+path = .common
+url = https://gitlab.com/megabyte-labs/common/packer.git
+branch = master
