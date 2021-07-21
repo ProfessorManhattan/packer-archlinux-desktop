@@ -41,7 +41,11 @@
     "description_template": "Archlinux Desktop ISO_VERSION",
     "description_template_package": "An automated Archlinux Desktop (currently, version ISO_VERSION) Packer project that builds boxes using the latest Archlinux release on a regular basis",
     "hostname": "vagrant-archlinux",
+    "name": "Archlinux Desktop",
+    "overview": "[Archlinux](https://archlinux.org/) is a Linux distribution that is focused on simplicity, modernity, pragmatism, user centrality, and versatility. In practice, this means the project attempts to have minimal distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over ideological design choices and focus on customizability rather than user-friendliness.\n\nPacman, a package manager written specifically for Arch Linux, is used to install, remove and update software packages. Arch Linux uses a rolling release model, meaning there are no \"major releases\" of completely new versions of the system; a regular system update is all that is needed to obtain the latest Arch software; the installation images released every month by the Arch team are simply up-to-date snapshots of the main system components.\n\nArch Linux has comprehensive documentation, which consists of a community wiki known as the [ArchWiki](https://wiki.archlinux.org/).",
+    "repo": "https://gitlab.com/megabyte-labs/packer/archlinux-desktop",
     "slug": "archlinux-desktop",
+    "title": "Archlinux Desktop (Latest)",
     "vagrant_tag": "arch",
     "version_description": "Compact Archlinux Desktop ISO_VERSION image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details."
   },
