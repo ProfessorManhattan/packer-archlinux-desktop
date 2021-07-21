@@ -4,9 +4,5 @@
 	branch = master
 [submodule ".common"]
 	path = .common
-<<<<<<< HEAD
-	url = https://gitlab.com/megabyte-space/common/packer.git
-=======
 	url = https://gitlab.com/megabyte-labs/common/packer.git
->>>>>>> 5b26077e8cb08cca14ee6dd82cea645aa19fdc1d
 	branch = master
