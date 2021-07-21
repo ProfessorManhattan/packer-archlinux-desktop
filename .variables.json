@@ -1,0 +1,306 @@
+{
+  "author": {
+    "email": "brian@megabyte.space",
+    "name": "Brian Zalewski"
+  },
+  "autodoc_actions_description": "",
+  "autodoc_tags_description": "",
+  "autodoc_todo_description": "",
+  "autodoc_variables_description": "",
+  "badge_style": "flat",
+  "company": "Megabyte LLC",
+  "copyright": "2020-2021",
+  "description": "An automated Archlinux Desktop (currently, version 2021.06.01) Packer project that builds boxes using the latest Archlinux release on a regular basis",
+  "description_template": "Archlinux Desktop 2021.06.01",
+  "docker_label_authors": "Brian Zalewski <brian@megabyte.space>",
+  "email": {
+    "help": "help@megabyte.space"
+  },
+  "github_prefix": "packer-",
+  "group": "none",
+  "hbs": {
+    "ansible": false,
+    "dockerfile": false,
+    "packer": true,
+    "packer-desktop": true,
+    "playbook": false,
+    "python": false,
+    "vagrant": true,
+    "yaml": false
+  },
+  "header_description_post": ".",
+  "header_description_pre": "A Packer desktop OS project. Brought to you by  ",
+  "header_title_post": "",
+  "header_title_pre": "",
+  "hostname": "vagrant-archlinux",
+  "license": "MIT",
+  "link": {
+    "chat": "https://app.slack.com/client/T01ABCG4NK1/C01NN74H0LW/details/",
+    "docs": "https://megabyte.space/docs",
+    "home": "https://megabyte.space",
+    "installdoctor": "https://install.doctor",
+    "privacy": "https://megabyte.space/privacy",
+    "shield": "https://shields.io",
+    "terms": "https://megabyte.space/terms"
+  },
+  "misc": {
+    "appnest": "https://github.com/andreasbm/readme",
+    "husky": "https://www.npmjs.com/package/husky",
+    "tinypng": "https://tinypng.com/"
+  },
+  "name": "Archlinux Desktop",
+  "organization": "Megabyte Labs",
+  "overview": "[Archlinux](https://archlinux.org/) is a Linux distribution that is focused on simplicity, modernity, pragmatism, user centrality, and versatility. In practice, this means the project attempts to have minimal distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over ideological design choices and focus on customizability rather than user-friendliness.\n\nPacman, a package manager written specifically for Arch Linux, is used to install, remove and update software packages. Arch Linux uses a rolling release model, meaning there are no \"major releases\" of completely new versions of the system; a regular system update is all that is needed to obtain the latest Arch software; the installation images released every month by the Arch team are simply up-to-date snapshots of the main system components.\n\nArch Linux has comprehensive documentation, which consists of a community wiki known as the [ArchWiki](https://wiki.archlinux.org/).",
+  "profile": {
+    "dockerhub": "megabytelabs",
+    "galaxy": "professormanhattan",
+    "github": "ProfessorManhattan",
+    "linkedin": "blzalewski",
+    "npmjs": "thisismyfirstday",
+    "npmjs_organization": "megabytelabs",
+    "opencollective": "megabytelabs",
+    "patreon": "ProfessorManhattan",
+    "pypi": "ProfessorManhattan",
+    "replit": "ProfessorMegaby",
+    "stackblitz": "ProfessorManhattan",
+    "twitter": "MegabyteLabs",
+    "vagrant": "ProfessorManhattan"
+  },
+  "profile_link": {
+    "dockerhub": "https://hub.docker.com/u",
+    "galaxy": "https://galaxy.ansible.com",
+    "github": "https://github.com",
+    "linkedin": "https://www.linkedin.com/in/",
+    "npmjs": "https://www.npmjs.com/~",
+    "opencollective": "https://opencollective.com",
+    "patreon": "https://www.patreon.com",
+    "pypi": "https://pypi.org/user",
+    "replit": "https://repl.it/@",
+    "stackblitz": "https://stackblitz.com/@",
+    "twitter": "MegabyteLabs",
+    "vagrant": "https://app.vagrantup.com"
+  },
+  "repo": "https://gitlab.com/megabyte-labs/packer/archlinux-desktop",
+  "repository": {
+    "group": {
+      "ansible_roles": "https://gitlab.com/megabyte-labs/ansible-roles",
+      "apps": "https://gitlab.com/megabyte-labs/apps",
+      "ci": "https://gitlab.com/megabyte-labs/ci",
+      "cloud": "https://gitlab.com/megabyte-labs/cloud",
+      "common": "https://gitlab.com/megabyte-labs/common",
+      "cryptocurrency": "https://gitlab.com/megabyte-labs/cryptocurrency",
+      "docker_compose": "https://gitlab.com/megabyte-labs/docker-compose",
+      "dockerfile": "https://gitlab.com/megabyte-labs/dockerfile",
+      "documentation": "https://gitlab.com/megabyte-labs/documentation",
+      "kubernetes": "https://gitlab.com/megabyte-labs/kubernetes",
+      "npm": "https://gitlab.com/megabyte-labs/npm",
+      "packer": "https://gitlab.com/megabyte-labs/packer",
+      "python": "https://gitlab.com/megabyte-labs/python",
+      "software": "https://gitlab.com/megabyte-labs/software",
+      "web_components": "https://gitlab.com/megabyte-labs/web-components"
+    },
+    "location": {
+      "conduct": "/-/blob/master/CODE_OF_CONDUCT.md",
+      "contributing": "/-/blob/master/CONTRIBUTING.md",
+      "demo": "/-/raw/master/.demo.gif",
+      "issues": "/-/issues",
+      "license": "/-/raw/master/LICENSE",
+      "logo": "/-/raw/master/logo.png",
+      "readme": "/-/blob/master/README.md"
+    },
+    "project": {
+      "ansible": "https://github.com/ProfessorManhattan/ansible-",
+      "assets": "https://gitlab.com/megabyte-labs/assets/-/raw/master",
+      "autodoc": "https://github.com/AndresBott/ansible-autodoc",
+      "playbooks": "https://gitlab.com/ProfessorManhattan/Playbooks",
+      "wrangler": "https://gitlab.com/megabyte-labs/wrangler"
+    }
+  },
+  "slug": "archlinux-desktop",
+  "subgroup": "desktop",
+  "template_json": {
+    "builders": [
+      {
+        "boot_command": "{{ user `boot_command` }}",
+        "boot_wait": "{{ user `boot_wait` }}",
+        "cpus": "{{ user `cpus` }}",
+        "disk_size": "{{ user `disk_size` }}",
+        "guest_os_type": "linux-2.6",
+        "http_directory": "{{ user `http_directory` }}",
+        "iso_checksum": "file:{{ user `iso_checksum_url` }}",
+        "iso_url": "{{ user `iso_url` }}",
+        "memory": "{{ user `memory` }}",
+        "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-Parallels",
+        "parallels_tools_flavor": "lin",
+        "parallels_tools_mode": "attach",
+        "prlctl_version_file": ".prlctl_version",
+        "shutdown_command": "{{ user `shutdown_command` }}",
+        "ssh_password": "{{ user `ssh_password` }}",
+        "ssh_port": "{{ user `ssh_port` }}",
+        "ssh_timeout": "{{ user `ssh_timeout` }}",
+        "ssh_username": "{{ user `ssh_username` }}",
+        "type": "parallels-iso",
+        "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
+      },
+      {
+        "boot_command": "{{ user `boot_command` }}",
+        "boot_wait": "{{ user `boot_wait` }}",
+        "cpus": "{{ user `cpus` }}",
+        "disk_size": "{{ user `disk_size` }}",
+        "headless": "{{ user `headless` }}",
+        "http_directory": "{{ user `http_directory` }}",
+        "iso_checksum": "file:{{ user `iso_checksum_url` }}",
+        "iso_url": "{{ user `iso_url` }}",
+        "memory": "{{ user `memory` }}",
+        "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM",
+        "shutdown_command": "{{ user `shutdown_command` }}",
+        "ssh_password": "{{ user `ssh_password` }}",
+        "ssh_port": "{{ user `ssh_port` }}",
+        "ssh_timeout": "{{ user `ssh_timeout` }}",
+        "ssh_username": "{{ user `ssh_username` }}",
+        "type": "qemu",
+        "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
+      },
+      {
+        "boot_command": "{{ user `boot_command` }}",
+        "boot_wait": "{{ user `boot_wait` }}",
+        "cpus": "{{ user `cpus` }}",
+        "disk_size": "{{ user `disk_size` }}",
+        "guest_additions_mode": "disable",
+        "guest_os_type": "ArchLinux_64",
+        "hard_drive_interface": "sata",
+        "headless": "{{ user `headless` }}",
+        "http_directory": "{{ user `http_directory` }}",
+        "iso_checksum": "file:{{ user `iso_checksum_url` }}",
+        "iso_url": "{{ user `iso_url` }}",
+        "memory": "{{ user `memory` }}",
+        "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VirtualBox",
+        "shutdown_command": "{{ user `shutdown_command` }}",
+        "ssh_password": "{{ user `ssh_password` }}",
+        "ssh_port": "{{ user `ssh_port` }}",
+        "ssh_timeout": "{{ user `ssh_timeout` }}",
+        "ssh_username": "{{ user `ssh_username` }}",
+        "type": "virtualbox-iso",
+        "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
+      },
+      {
+        "boot_command": "{{ user `boot_command` }}",
+        "boot_wait": "{{ user `boot_wait` }}",
+        "cpus": "{{ user `cpus` }}",
+        "disk_size": "{{ user `disk_size` }}",
+        "guest_os_type": "other3xlinux-64",
+        "headless": "{{ user `headless`}}",
+        "http_directory": "{{ user `http_directory` }}",
+        "iso_checksum": "file:{{ user `iso_checksum_url` }}",
+        "iso_url": "{{ user `iso_url` }}",
+        "memory": "{{ user `memory` }}",
+        "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VMWare",
+        "shutdown_command": "{{ user `shutdown_command` }}",
+        "ssh_password": "{{ user `ssh_password` }}",
+        "ssh_port": "{{ user `ssh_port` }}",
+        "ssh_timeout": "{{ user `ssh_timeout` }}",
+        "ssh_username": "{{ user `ssh_username` }}",
+        "type": "vmware-iso",
+        "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
+      }
+    ],
+    "post-processors": [
+      [
+        {
+          "compression_level": "{{ user `compression_level` }}",
+          "output": "{{ user `build_directory` }}/{{ user `box_basename` }}.{{ .Provider }}.box",
+          "type": "vagrant",
+          "vagrantfile_template": "{{ template_dir }}/Vagrantfile"
+        },
+        {
+          "access_token": "{{ user `vagrantup_token` }}",
+          "box_tag": "{{ user `vagrantup_user` }}/{{ user `box_basename` }}",
+          "type": "vagrant-cloud",
+          "version": "{{ user `iso_version` }}",
+          "version_description": "{{ user `description` }} version {{ user `iso_version` }}"
+        }
+      ]
+    ],
+    "provisioners": [
+      {
+        "environment_vars": [
+          "COUNTRY={{ user `country` }}"
+        ],
+        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+        "expect_disconnect": true,
+        "script": "scripts/base.custom.sh",
+        "type": "shell"
+      },
+      {
+        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+        "only": [
+          "parallels-iso"
+        ],
+        "script": "scripts/parallels.custom.sh",
+        "type": "shell"
+      },
+      {
+        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+        "only": [
+          "virtualbox-iso"
+        ],
+        "script": "scripts/virtualbox.custom.sh",
+        "type": "shell"
+      },
+      {
+        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+        "only": [
+          "vmware-iso"
+        ],
+        "script": "scripts/vmware.custom.sh",
+        "type": "shell"
+      },
+      {
+        "environment_vars": [
+          "WRITE_ZEROS={{ user `write_zeros` }}"
+        ],
+        "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+        "expect_disconnect": true,
+        "scripts": [
+          "scripts/gnome.custom.sh",
+          "scripts/cleanup.custom.sh"
+        ],
+        "type": "shell"
+      }
+    ],
+    "variables": {
+      "boot_command": "<enter><wait10><wait10><wait10><wait10>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/enable-ssh.sh<enter><wait5>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5>/usr/bin/bash ./enable-ssh.sh<enter>",
+      "boot_wait": "10s",
+      "box_basename": "Archlinux-Desktop",
+      "build_directory": "build",
+      "compression_level": "9",
+      "country": "US",
+      "cpus": "2",
+      "description": "Archlinux Desktop 2021.06.01",
+      "disk_size": "80000",
+      "guest_additions_url": "",
+      "headless": "false",
+      "http_directory": "http",
+      "http_proxy": "{{ env `HTTP_PROXY` }}",
+      "https_proxy": "{{ env `HTTPS_PROXY` }}",
+      "iso_checksum_url": "https://mirror.arizona.edu/archlinux/iso/latest/sha1sums.txt",
+      "iso_url": "https://mirror.arizona.edu/archlinux/iso/latest/archlinux-2021.06.01-x86_64.iso",
+      "iso_version": "2021.06.01",
+      "latestos_tag": "arch",
+      "memory": "2048",
+      "no_proxy": "{{ env `NO_PROXY` }}",
+      "shutdown_command": "sudo systemctl start poweroff.timer",
+      "ssh_password": "vagrant",
+      "ssh_port": "22",
+      "ssh_timeout": "30m",
+      "ssh_username": "vagrant",
+      "vagrantup_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
+      "vagrantup_user": "Megabyte",
+      "version_description": "Compact Archlinux Desktop 2021.06.01 image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details.",
+      "write_zeros": "true"
+    }
+  },
+  "title": "Archlinux Desktop (Latest)",
+  "vagrant_tag": "arch",
+  "version_description": "Compact Archlinux Desktop 2021.06.01 image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details."
+}
