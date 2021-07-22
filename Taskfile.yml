@@ -8,7 +8,6 @@ vars:
   REPOSITORY_TYPE: packer
 
 includes:
-  build: ./.common/taskfiles-desktop/Taskfile-build.yml
   common: ./.common/taskfiles-desktop/Taskfile-common.yml
   packer: ./.common/taskfiles-desktop/Taskfile-packer.yml
   fix: ./.common/taskfiles-desktop/Taskfile-fix.yml
