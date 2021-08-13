@@ -3,7 +3,7 @@
 # VirtualBox Guest Additions
 # https://wiki.archlinux.org/index.php/VirtualBox/Install_Arch_Linux_as_a_guest
 echo ">>>> install-virtualbox.sh: Installing VirtualBox Guest Additions and NFS utilities.."
-/usr/bin/pacman -S --noconfirm virtualbox-guest-utils-nox nfs-utils
+/usr/bin/pacman -S --noconfirm virtualbox-guest-utils nfs-utils
 
 echo ">>>> install-virtualbox.sh: Enabling VirtualBox Guest service.."
 /usr/bin/systemctl enable vboxservice.service

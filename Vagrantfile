@@ -5,25 +5,26 @@ Vagrant.require_version ">= 1.6.2"
 
 Vagrant.configure("2") do |config|
 
+  config.ssh.insert_key = false
   config.ssh.password = "vagrant"
   config.ssh.username = "vagrant"
 
-  config.vm.define "arch" do |os|
-    os.vm.box="Megabyte/Archlinux-Desktop"
-    os.vm.hostname = "vagrant-archlinux"
+  config.vm.define :arch do |arch|
+    arch.vm.box="man1/Archlinux-Desktop"
+    arch.vm.hostname = "vagrant-archlinux"
+    arch.vm.network :forwarded_port, guest: 22, host: 58022, id: "ssh", auto_correct: true
+    arch.vm.network :forwarded_port, guest: 3389, host: 53389, id: "rdp", auto_correct: true
+    arch.vm.network :forwarded_port, guest: 443, host: 58443, id: "https", auto_correct: true
+    arch.vm.network :forwarded_port, guest: 80, host: 58080, id: "http", auto_correct: true
+    arch.vm.network :private_network, ip: "172.24.24.2", netmask: "255.255.255.0"
 
-    os.vm.network "forwarded_port", guest: 22, host: 58022, id: "ssh", auto_correct: true
-    os.vm.network "forwarded_port", guest: 3389, host: 53389, id: "rdp", auto_correct: true
-    os.vm.network "forwarded_port", guest: 443, host: 58443, id: "https", auto_correct: true
-    os.vm.network "forwarded_port", guest: 80, host: 58080, id: "http", auto_correct: true
-
-    os.vm.provider "hyperv" do |v|
+    arch.vm.provider :hyperv do |v|
       v.cpus = 2
       v.maxmemory = 4096
-      v.vmname = "Archlinux Desktop 2021.06.01"
+      v.vmname = "Archlinux Desktop 2021.08.01"
     end
 
-    os.vm.provider "libvirt" do |v, override|
+    arch.vm.provider :libvirt do |v, override|
       v.cpus = 2
       v.memory = 4096
       # Use WinRM for the default synced folder; or disable it if
@@ -43,16 +44,15 @@ Vagrant.configure("2") do |config|
     end
 
 
-    os.vm.provider "parallels" do |v|
+    arch.vm.provider :parallels do |v|
       v.cpus = 2
       v.memory = 4096
-      v.name = "Archlinux Desktop 2021.06.01"
+      v.name = "Ubuntu Desktop"
       v.update_guest_tools = true
     end
 
-    os.vm.provider "virtualbox" do |v|
+    arch.vm.provider :virtualbox do |v|
       v.check_guest_additions = true
-      v.cpus = 2
       v.customize ["modifyvm", :id, "--accelerate3d", "on"]
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
       v.customize ["modifyvm", :id, "--cpus", "2"]
@@ -63,44 +63,19 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--vram", "256"]
       v.customize ["setextradata", "global", "GUI/SuppressMessages", "all"]
       v.gui = true
-      v.memory = 4096
-      v.name = "Archlinux Desktop 2021.06.01"
+      v.name = "Archlinux Desktop 2021.08.01"
     end
 
-    os.vm.provider "vmware_fusion" do |v|
+    arch.vm.provider :vmware_fusion do |v|
       v.gui = true
-      v.vmx["ethernet0.virtualDev"] = "vmxnet3"
-      v.vmx["gui.fitGuestUsingNativeDisplayResolution"] = "TRUE"
-      v.vmx["gui.fullScreenAtPowerOn"] = "TRUE"
-      v.vmx["gui.lastPoweredViewMode"] = "fullscreen"
-      v.vmx["gui.viewModeAtPowerOn"] = "fullscreen"
       v.vmx["memsize"] = "4096"
-      v.vmx["mks.enable3d"] = "TRUE"
-      v.vmx["mks.forceDiscreteGPU"] = "TRUE"
       v.vmx["numvcpus"] = "2"
-      v.vmx["RemoteDisplay.vnc.enabled"] = "TRUE"
-      v.vmx["RemoteDisplay.vnc.port"] = "5900"
-      v.vmx["sound.autodetect"] = "TRUE"
-      v.vmx["sound.present"] = "TRUE"
-      v.vmx["sound.startConnected"] = "TRUE"
     end
 
-    os.vm.provider "vmware_workstation" do |v|
+    arch.vm.provider :vmware_workstation do |v|
       v.gui = true
-      v.vmx["ethernet0.virtualDev"] = "vmxnet3"
-      v.vmx["gui.fitGuestUsingNativeDisplayResolution"] = "TRUE"
-      v.vmx["gui.fullScreenAtPowerOn"] = "TRUE"
-      v.vmx["gui.lastPoweredViewMode"] = "fullscreen"
-      v.vmx["gui.viewModeAtPowerOn"] = "fullscreen"
       v.vmx["memsize"] = "4096"
-      v.vmx["mks.enable3d"] = "TRUE"
-      v.vmx["mks.forceDiscreteGPU"] = "TRUE"
       v.vmx["numvcpus"] = "2"
-      v.vmx["RemoteDisplay.vnc.enabled"] = "TRUE"
-      v.vmx["RemoteDisplay.vnc.port"] = "5900"
-      v.vmx["sound.autodetect"] = "TRUE"
-      v.vmx["sound.present"] = "TRUE"
-      v.vmx["sound.startConnected"] = "TRUE"
     end
   end
 end
