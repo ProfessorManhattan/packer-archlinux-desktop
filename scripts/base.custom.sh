@@ -16,7 +16,7 @@ PASSWORD=$(/usr/bin/openssl passwd -crypt 'vagrant')
 TIMEZONE='UTC'
 
 CONFIG_SCRIPT='/usr/local/bin/arch-config.sh'
-ROOT_PARTITION="${DISK}1"
+ROOT_PARTITION="${DISK}2"
 TARGET_DIR='/mnt'
 COUNTRY=${COUNTRY:-US}
 MIRRORLIST="https://archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=http&protocol=https&ip_version=4&use_mirror_status=on"
@@ -28,11 +28,11 @@ echo ">>>> install-base.sh: Destroying magic strings and signatures on ${DISK}..
 /usr/bin/dd if=/dev/zero of=${DISK} bs=512 count=2048
 /usr/bin/wipefs --all ${DISK}
 
-echo ">>>> install-base.sh: Creating /root partition on ${DISK}.."
-/usr/bin/sgdisk --new=1:0:0 ${DISK}
+echo ">>>> install-base.sh: Creating grub partition on ${DISK}.."
+/usr/bin/sgdisk -n 0:0:+1MiB -t 0:ef02 -c 0:grub ${DISK}
 
-echo ">>>> install-base.sh: Setting ${DISK} bootable.."
-/usr/bin/sgdisk ${DISK} --attributes=1:set:2
+echo ">>>> install-base.sh: Creating /root partition on ${DISK}.."
+/usr/bin/sgdisk -n 0:0:0 -t 0:8300 -c 0:root ${DISK}
 
 echo ">>>> install-base.sh: Creating /root filesystem (ext4).."
 /usr/bin/mkfs.ext4 -O ^64bit -F -m 0 -q -L root ${ROOT_PARTITION}
@@ -43,8 +43,10 @@ echo ">>>> install-base.sh: Mounting ${ROOT_PARTITION} to ${TARGET_DIR}.."
 echo ">>>> install-base.sh: Setting pacman ${COUNTRY} mirrors.."
 curl -s "$MIRRORLIST" | sed 's/^#Server/Server/' >/etc/pacman.d/mirrorlist
 
+
 echo ">>>> install-base.sh: Bootstrapping the base installation.."
 /usr/bin/pacstrap ${TARGET_DIR} base base-devel linux
+#/usr/bin/pacstrap ${TARGET_DIR} base linux
 
 # Need to install netctl as well: https://github.com/archlinux/arch-boxes/issues/70
 # Can be removed when Vagrant's Arch plugin will use systemd-networkd: https://github.com/hashicorp/vagrant/pull/11400
@@ -114,11 +116,24 @@ rm "${TARGET_DIR}${CONFIG_SCRIPT}"
 echo ">>>> install-base.sh: Adding workaround for shutdown race condition.."
 /usr/bin/install --mode=0644 /root/poweroff.timer "${TARGET_DIR}/etc/systemd/system/poweroff.timer"
 
+
+echo '==> Turning off password expiry'
+sudo sed -i '/password   include      system-local-login/c\#password   include      system-local-login' /mnt/etc/pam.d/login
+PASSWD=$(echo "vagrant"|openssl passwd -6 -stdin)
+sudo sed -i "/root.*\:$/c\root:$PASSWD:::::::" /mnt/etc/shadow
+PASSWD=$(echo "vagrant"|openssl passwd -6 -stdin)
+sudo sed -i "/vagrant.*\:$/c\vagrant:$PASSWD:::::::" /mnt/etc/shadow
+
+
 echo ">>>> install-base.sh: Completing installation.."
 /usr/bin/sleep 3
 /usr/bin/umount ${TARGET_DIR}
+
 # Turning network interfaces down to make sure SSH session was dropped on host.
 # More info at: https://www.packer.io/docs/provisioners/shell.html#handling-reboots
+
+sudo pacman -Sy --noconfirm  net-tools
+
 echo '==> Turning down network interfaces and rebooting'
 for i in $(/usr/bin/netstat -i | /usr/bin/tail +3 | /usr/bin/awk '{print $1}'); do /usr/bin/ip link set "${i}" down; done
 /usr/bin/systemctl reboot

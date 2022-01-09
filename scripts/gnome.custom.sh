@@ -18,7 +18,6 @@ echo ">>>> INSTALLING DISPLAY MANAGER, GNOME desktop ..."
 PKGS=(
   'gnome'
   'gnome-tweaks'
-  'gnome'
   'nautilus-sendto'
   'gnome-nettool'
   'gnome-usage'
@@ -57,5 +56,3 @@ sudo systemctl enable gdm
 sudo systemctl enable NetworkManager
 echo ">>> Done!"
 
-echo ">>> REBOOTING ..."
-sudo reboot

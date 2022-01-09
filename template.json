@@ -1,182 +1,194 @@
 {
-  "builders": [
-    {
-      "boot_command": "{{ user `boot_command` }}",
-      "boot_wait": "{{ user `boot_wait` }}",
-      "cpus": "{{ user `cpus` }}",
-      "disk_size": "{{ user `disk_size` }}",
-      "guest_os_type": "linux-2.6",
-      "http_directory": "{{ user `http_directory` }}",
-      "iso_checksum": "file:{{ user `iso_checksum_url` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-Parallels",
-      "parallels_tools_flavor": "lin",
-      "parallels_tools_mode": "attach",
-      "prlctl_version_file": ".prlctl_version",
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_port": "{{ user `ssh_port` }}",
-      "ssh_timeout": "{{ user `ssh_timeout` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "type": "parallels-iso",
-      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
+    "variables": {
+        "boot_command": "<enter><wait10><wait10><wait10><wait10>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/enable-ssh.sh<enter><wait5>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5><enter><wait5>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/turn-off-password-expiry.sh<enter><wait5>/usr/bin/bash ./enable-ssh.sh<enter><wait5>/usr/bin/bash ./turn-off-password-expiry.sh<enter>",
+        "boot_wait": "10s",
+        "box_basename": "Archlinux-Desktop",
+        "build_directory": "build",
+        "compression_level": "9",
+        "country": "US",
+        "cpus": "2",
+        "description": "Archlinux Desktop 2021.08.01",
+        "disk_size": "80000",
+        "guest_additions_url": "",
+        "headless": "false",
+        "http_directory": "http",
+        "http_proxy": "{{ env `HTTP_PROXY` }}",
+        "https_proxy": "{{ env `HTTPS_PROXY` }}",
+        "iso_checksum_url": "https://mirror.arizona.edu/archlinux/iso/latest/sha1sums.txt",
+        "iso_url": "https://mirror.arizona.edu/archlinux/iso/latest/archlinux-2021.08.01-x86_64.iso",
+        "iso_version": "2021.08.01",
+        "latestos_tag": "arch",
+        "memory": "2048",
+        "no_proxy": "{{ env `NO_PROXY` }}",
+        "shutdown_command": "sudo systemctl start poweroff.timer",
+        "ssh_password": "vagrant",
+        "ssh_port": "22",
+        "ssh_timeout": "30m",
+        "ssh_username": "vagrant",
+        "vagrantup_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
+        "vagrantup_user": "man1",
+        "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}",
+        "write_zeros": "true",
+        "version_description": "Compact Archlinux Desktop 2021.08.01 image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details."
     },
-    {
-      "boot_command": "{{ user `boot_command` }}",
-      "boot_wait": "{{ user `boot_wait` }}",
-      "cpus": "{{ user `cpus` }}",
-      "disk_size": "{{ user `disk_size` }}",
-      "headless": "{{ user `headless` }}",
-      "http_directory": "{{ user `http_directory` }}",
-      "iso_checksum": "file:{{ user `iso_checksum_url` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM",
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_port": "{{ user `ssh_port` }}",
-      "ssh_timeout": "{{ user `ssh_timeout` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "type": "qemu",
-      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
-    },
-    {
-      "boot_command": "{{ user `boot_command` }}",
-      "boot_wait": "{{ user `boot_wait` }}",
-      "cpus": "{{ user `cpus` }}",
-      "disk_size": "{{ user `disk_size` }}",
-      "guest_additions_mode": "disable",
-      "guest_os_type": "ArchLinux_64",
-      "hard_drive_interface": "sata",
-      "headless": "{{ user `headless` }}",
-      "http_directory": "{{ user `http_directory` }}",
-      "iso_checksum": "file:{{ user `iso_checksum_url` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VirtualBox",
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_port": "{{ user `ssh_port` }}",
-      "ssh_timeout": "{{ user `ssh_timeout` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "type": "virtualbox-iso",
-      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
-    },
-    {
-      "boot_command": "{{ user `boot_command` }}",
-      "boot_wait": "{{ user `boot_wait` }}",
-      "cpus": "{{ user `cpus` }}",
-      "disk_size": "{{ user `disk_size` }}",
-      "guest_os_type": "other3xlinux-64",
-      "headless": "{{ user `headless`}}",
-      "http_directory": "{{ user `http_directory` }}",
-      "iso_checksum": "file:{{ user `iso_checksum_url` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "memory": "{{ user `memory` }}",
-      "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VMWare",
-      "shutdown_command": "{{ user `shutdown_command` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-      "ssh_port": "{{ user `ssh_port` }}",
-      "ssh_timeout": "{{ user `ssh_timeout` }}",
-      "ssh_username": "{{ user `ssh_username` }}",
-      "type": "vmware-iso",
-      "vm_name": "{{ user `box_basename` }}-{{ user `iso_version` }}"
-    }
-  ],
-  "post-processors": [
-    [
-      {
-        "compression_level": "{{ user `compression_level` }}",
-        "output": "{{ user `build_directory` }}/{{ user `box_basename` }}.{{ .Provider }}.box",
-        "type": "vagrant",
-        "vagrantfile_template": "{{ template_dir }}/Vagrantfile"
-      },
-      {
-        "access_token": "{{ user `vagrantup_token` }}",
-        "box_tag": "{{ user `vagrantup_user` }}/{{ user `box_basename` }}",
-        "type": "vagrant-cloud",
-        "version": "{{ user `iso_version` }}",
-        "version_description": "{{ user `description` }} version {{ user `iso_version` }}"
-      }
+    "builders": [
+        {
+            "type": "parallels-iso",
+            "boot_command": "{{ user `boot_command` }}",
+            "boot_wait": "{{ user `boot_wait` }}",
+            "cpus": "{{ user `cpus` }}",
+            "disk_size": "{{ user `disk_size` }}",
+            "guest_os_type": "linux-2.6",
+            "http_directory": "{{ user `http_directory` }}",
+            "iso_checksum": "file:{{ user `iso_checksum_url` }}",
+            "iso_url": "{{ user `iso_url` }}",
+            "memory": "{{ user `memory` }}",
+            "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-Parallels",
+            "parallels_tools_flavor": "lin",
+            "parallels_tools_mode": "attach",
+            "prlctl_version_file": ".prlctl_version",
+            "shutdown_command": "{{ user `shutdown_command` }}",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_port": "{{ user `ssh_port` }}",
+            "ssh_timeout": "{{ user `ssh_timeout` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "vm_name": "{{ user `vm_name` }}"
+        },
+        {
+            "type": "qemu",
+            "boot_command": "{{ user `boot_command` }}",
+            "boot_wait": "{{ user `boot_wait` }}",
+            "cpus": "{{ user `cpus` }}",
+            "disk_size": "{{ user `disk_size` }}",
+            "headless": "{{ user `headless` }}",
+            "http_directory": "{{ user `http_directory` }}",
+            "iso_checksum": "file:{{ user `iso_checksum_url` }}",
+            "iso_url": "{{ user `iso_url` }}",
+            "memory": "{{ user `memory` }}",
+            "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-KVM",
+            "shutdown_command": "{{ user `shutdown_command` }}",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_port": "{{ user `ssh_port` }}",
+            "ssh_timeout": "{{ user `ssh_timeout` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "vm_name": "{{ user `vm_name` }}"
+        },
+        {
+            "type": "virtualbox-iso",
+            "boot_command": "{{ user `boot_command` }}",
+            "boot_wait": "{{ user `boot_wait` }}",
+            "cpus": "{{ user `cpus` }}",
+            "disk_size": "{{ user `disk_size` }}",
+            "gfx_vram_size": "128",
+            "gfx_controller": "vmsvga",
+            "gfx_accelerate_3d": "true",
+            "guest_additions_mode": "disable",
+            "guest_os_type": "ArchLinux_64",
+            "hard_drive_interface": "sata",
+            "headless": "{{ user `headless` }}",
+            "http_directory": "{{ user `http_directory` }}",
+            "iso_checksum": "file:{{ user `iso_checksum_url` }}",
+            "iso_url": "{{ user `iso_url` }}",
+            "memory": "{{ user `memory` }}",
+            "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VirtualBox",
+            "shutdown_command": "{{ user `shutdown_command` }}",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_port": "{{ user `ssh_port` }}",
+            "ssh_timeout": "{{ user `ssh_timeout` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "vm_name": "{{ user `vm_name` }}"
+        },
+        {
+            "type": "vmware-iso",
+            "boot_command": "{{ user `boot_command` }}",
+            "boot_wait": "{{ user `boot_wait` }}",
+            "cpus": "{{ user `cpus` }}",
+            "disk_size": "{{ user `disk_size` }}",
+            "guest_os_type": "other3xlinux-64",
+            "headless": "{{ user `headless`}}",
+            "http_directory": "{{ user `http_directory` }}",
+            "iso_checksum": "file:{{ user `iso_checksum_url` }}",
+            "iso_url": "{{ user `iso_url` }}",
+            "memory": "{{ user `memory` }}",
+            "output_directory": "{{ user `build_directory` }}/{{ user `box_basename` }}-{{ user `iso_version` }}-VMWare",
+            "shutdown_command": "{{ user `shutdown_command` }}",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_port": "{{ user `ssh_port` }}",
+            "ssh_timeout": "{{ user `ssh_timeout` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "vm_name": "{{ user `vm_name` }}"
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "vagrant",
+                "compression_level": "{{ user `compression_level` }}",
+                "output": "{{ user `build_directory` }}/{{ user `box_basename` }}.{{ .Provider }}.box",
+                "vagrantfile_template": "{{ template_dir }}/Vagrantfile"
+            },
+            {
+                "type": "vagrant-cloud",
+                "access_token": "{{ user `vagrantup_token` }}",
+                "box_tag": "{{ user `vagrantup_user` }}/{{ user `box_basename` }}",
+                "version_description": "{{ user `description` }} version {{ user `iso_version` }}",
+                "version": "{{ user `iso_version` }}"
+            }
+        ]
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "environment_vars": [
+                "COUNTRY={{ user `country` }}"
+            ],
+            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "expect_disconnect": true,
+            "script": "scripts/base.custom.sh"
+        },
+        {
+            "type": "shell",
+            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "only": [
+                "parallels-iso"
+            ],
+            "script": "scripts/parallels.custom.sh"
+        },
+        {
+            "type": "shell",
+            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "only": [
+                "virtualbox-iso"
+            ],
+            "script": "scripts/virtualbox.custom.sh"
+        },
+        {
+            "type": "shell",
+            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "only": [
+                "vmware-iso"
+            ],
+            "script": "scripts/vmware.custom.sh"
+        },
+        {
+            "type": "shell",
+            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "script": "scripts/grub.sh"
+        },
+        {
+            "type": "shell",
+            "environment_vars": [
+                "WRITE_ZEROS={{ user `write_zeros` }}"
+            ],
+            "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "expect_disconnect": true,
+            "pause_before": "20s",
+            "start_retry_timeout": "30m",
+            "scripts": [
+                "scripts/gnome.custom.sh",
+                "scripts/plymouth.sh",
+                "scripts/cleanup.custom.sh"
+            ]
+        }
     ]
-  ],
-  "provisioners": [
-    {
-      "environment_vars": [
-        "COUNTRY={{ user `country` }}"
-      ],
-      "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-      "expect_disconnect": true,
-      "script": "scripts/base.custom.sh",
-      "type": "shell"
-    },
-    {
-      "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-      "only": [
-        "parallels-iso"
-      ],
-      "script": "scripts/parallels.custom.sh",
-      "type": "shell"
-    },
-    {
-      "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-      "only": [
-        "virtualbox-iso"
-      ],
-      "script": "scripts/virtualbox.custom.sh",
-      "type": "shell"
-    },
-    {
-      "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-      "only": [
-        "vmware-iso"
-      ],
-      "script": "scripts/vmware.custom.sh",
-      "type": "shell"
-    },
-    {
-      "environment_vars": [
-        "WRITE_ZEROS={{ user `write_zeros` }}"
-      ],
-      "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-      "expect_disconnect": true,
-      "scripts": [
-        "scripts/gnome.custom.sh",
-        "scripts/cleanup.custom.sh"
-      ],
-      "type": "shell"
-    }
-  ],
-  "variables": {
-    "boot_command": "<enter><wait10><wait10><wait10><wait10>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/enable-ssh.sh<enter><wait5>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5>/usr/bin/bash ./enable-ssh.sh<enter>",
-    "boot_wait": "10s",
-    "box_basename": "Archlinux-Desktop",
-    "build_directory": "build",
-    "compression_level": "9",
-    "country": "US",
-    "cpus": "2",
-    "description": "Archlinux Desktop 2021.06.01",
-    "disk_size": "80000",
-    "guest_additions_url": "",
-    "headless": "false",
-    "http_directory": "http",
-    "http_proxy": "{{ env `HTTP_PROXY` }}",
-    "https_proxy": "{{ env `HTTPS_PROXY` }}",
-    "iso_checksum_url": "https://mirror.arizona.edu/archlinux/iso/latest/sha1sums.txt",
-    "iso_url": "https://mirror.arizona.edu/archlinux/iso/latest/archlinux-2021.06.01-x86_64.iso",
-    "iso_version": "2021.06.01",
-    "latestos_tag": "arch",
-    "memory": "2048",
-    "no_proxy": "{{ env `NO_PROXY` }}",
-    "shutdown_command": "sudo systemctl start poweroff.timer",
-    "ssh_password": "vagrant",
-    "ssh_port": "22",
-    "ssh_timeout": "30m",
-    "ssh_username": "vagrant",
-    "vagrantup_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
-    "vagrantup_user": "Megabyte",
-    "version_description": "Compact Archlinux Desktop 2021.06.01 image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details.",
-    "write_zeros": "true"
-  }
 }
