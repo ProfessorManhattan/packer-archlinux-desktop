@@ -14,40 +14,23 @@
     "url": "https://gitlab.com/megabyte-labs/packer/archlinux-desktop/-/issues"
   },
   "scripts": {
-    "build": "trash build && packer build template.json",
-    "build:kvm": "trash build && packer build -only=qemu template.json",
-    "build:parallels": "trash build && packer build -only=parallels-iso template.json",
-    "build:virtualbox": "trash build && packer build -only=virtualbox-iso template.json",
-    "build:vmware": "trash build && packer build -only=vmware-iso template.json",
-    "commit": "git-cz",
-    "fix": "run-s fix:*",
-    "fix:packer": "for TEMPLATE in *template.json; do packer fix $TEMPLATE > __$TEMPLATE; mv __$TEMPLATE $TEMPLATE; done",
-    "fix:prettier": "prettier --write .",
-    "fix:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky \\) -prune -o -type f \\( -name \\*.custom.sh -o -name \\*.custom.sh.j2 \\) -print0 | xargs -0 shellcheck -f diff | git apply",
-    "info": "npm-scripts-info",
-    "postinstall": "husky install && run-s update",
-    "launch": "vagrant up",
-    "misc:markdown-links": "find . -type d \\( -name .cache -o -name .git -o -name .github -o -name .gitlab -o -name .modules  -o -name node_modules \\) -prune -o -type f \\( -name \\*.md \\) -print0 | xargs -0 -r -n1 markdown-link-check",
-    "prepare-release": "run-s update test version",
-    "test": "run-s test:*",
-    "test:packer": "for TEMPLATE in *template.json; do packer validate $TEMPLATE; done",
-    "test:prettier": "prettier --list-different .",
-    "test:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky \\) -prune -o -type f \\( -name \\*.custom.sh -o -name \\*.custom.sh.j2 \\) -print0 | xargs -0 -r -n1 shellcheck",
-    "test:vagrant": "vagrant validate",
-    "update": "bash .start.sh && cp ./.modules/packer/.start.sh .start.sh",
-    "version": "standard-version -a --no-verify"
   },
   "blueprint": {
-    "description": "An automated Archlinux Desktop (currently, version ISO_VERSION) Packer project that builds boxes using the latest Archlinux release on a regular basis",
-    "description_template": "Archlinux Desktop ISO_VERSION",
+    "description": "An automated ArchLinux Desktop (currently, version ISO_VERSION) Packer project that builds boxes using the latest ArchLinux release on a regular basis",
+    "description_template": "ArchLinux Desktop ISO_VERSION",
+    "group": "packer",
     "hostname": "vagrant-archlinux",
-    "name": "Archlinux Desktop",
-    "overview": "[Archlinux](https://archlinux.org/) is a Linux distribution that is focused on simplicity, modernity, pragmatism, user centrality, and versatility. In practice, this means the project attempts to have minimal distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over ideological design choices and focus on customizability rather than user-friendliness.\n\nPacman, a package manager written specifically for Arch Linux, is used to install, remove and update software packages. Arch Linux uses a rolling release model, meaning there are no \"major releases\" of completely new versions of the system; a regular system update is all that is needed to obtain the latest Arch software; the installation images released every month by the Arch team are simply up-to-date snapshots of the main system components.\n\nArch Linux has comprehensive documentation, which consists of a community wiki known as the [ArchWiki](https://wiki.archlinux.org/).",
-    "repo": "https://gitlab.com/megabyte-labs/packer/archlinux-desktop",
+    "name": "ArchLinux Desktop",
+    "overview": "[ArchLinux](https://archlinux.org/) is a Linux distribution that is focused on simplicity, modernity, pragmatism, user centrality, and versatility. In practice, this means the project attempts to have minimal distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over ideological design choices and focus on customizability rather than user-friendliness.\n\nPacman, a package manager written specifically for Arch Linux, is used to install, remove and update software packages. Arch Linux uses a rolling release model, meaning there are no \"major releases\" of completely new versions of the system; a regular system update is all that is needed to obtain the latest Arch software; the installation images released every month by the Arch team are simply up-to-date snapshots of the main system components.\n\nArch Linux has comprehensive documentation, which consists of a community wiki known as the [ArchWiki](https://wiki.archlinux.org/).\n\nThis project houses configurations that can be used to build performant [ArchLinux Desktop](https://archlinux.org/) images. It includes scripts that take care of optimizing the image for your system (i.e. setting up SSH with the Vagrant default public key, setting up GuestAdditions for VirtualBox, etc.). This project is intended to be used to create desktop images that you would launch from your main desktop using a GUI. If you are looking for headless images, you should either use [Bento's server images](https://app.vagrantup.com/bento). You might also have some luck browsing through our [Packer projects](https://gitlab.com/megabyte-labs/packer).",
+    "repository": {
+      "gitlab": "https://gitlab.com/megabyte-labs/packer/archlinux-desktop",
+      "github": "https://github.com/megabyte-labs/packer-archlinux-desktop"
+    },
     "slug": "archlinux-desktop",
-    "title": "Archlinux Desktop (Latest)",
+    "subgroup": "desktop",
+    "title": "ArchLinux Desktop Template for Packer",
     "vagrant_tag": "arch",
-    "version_description": "Compact Archlinux Desktop ISO_VERSION image. See https://gitlab.com/megabyte-labs/packer/archlinux-desktop for more details."
+    "version_description": "An ArchLinux Desktop ISO_VERSION image. See https://github.com/megabyte-labs/packer-archlinux-desktop for more details."
   },
   "config": {
     "commitizen": {
@@ -55,21 +38,6 @@
     }
   },
   "devDependencies": {
-    "@megabytelabs/prettier-config": "^1.2.893",
-    "consola": "^2.15.3",
-    "cspell": "^5.4.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^5.2.0",
-    "lint-staged": "^11.0.0",
-    "markdown-link-check": "^3.8.7",
-    "npm-run-all": "^4.1.5",
-    "npm-scripts-info": "^0.3.9",
-    "prettier": "^2.1.1",
-    "prettier-package-json": "^2.5.0",
-    "prettier-plugin-sh": "^0.6.1",
-    "shellcheck": "^1.0.0",
-    "standard-version": "^9.3.0",
-    "trash-cli": "^4.0.0"
   },
   "keywords": [
     "accelerated",
@@ -120,12 +88,5 @@
     "test": "Validates the Packer configuration file (i.e. template.json) and performs some other linting",
     "update": "Runs .start.sh to automatically update meta files and documentation",
     "version": "Used by 'npm run prepare-release' to update the CHANGELOG and app version"
-  },
-  "standard-version": {
-    "scripts": {
-      "prebump": "jq -r '.variables.iso_version' template.json",
-      "prerelease": "git add --all",
-      "pretag": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && if git show-ref --tags v$PACKAGE_VERSION --quiet; then git tag -d v$PACKAGE_VERSION; fi"
-    }
   }
 }
