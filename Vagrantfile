@@ -4,7 +4,7 @@
 Vagrant.require_version ">= 1.6.2"
 
 cpus = 2
-description = "ArchLinux Desktop 2022.04.05"
+description = "ArchLinux Desktop 2022.05.01"
 memory = 4096
 
 Vagrant.configure("2") do |config|
