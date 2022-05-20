@@ -143,13 +143,13 @@
       "environment_vars": ["WRITE_ZEROS={{ user `write_zeros` }}"],
       "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "expect_disconnect": true,
-      "pause_before": "20s",
-      "scripts": ["scripts/gnome.custom.sh", "scripts/plymouth.sh", "scripts/cleanup.custom.sh"],
+      "pause_before": "11s",
+      "scripts": ["scripts/gnome.custom.sh", "scripts/plymouth.sh", "scripts/cleanup.custom.sh", "scripts/cleanup.custom1.sh", "scripts/cleanup.custom2.sh"],
       "type": "shell"
     }
   ],
   "variables": {
-    "boot_command": "<enter><wait10><wait10><wait10><wait10><wait10>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/enable-ssh.sh<enter><wait5>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5><enter><wait5>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/turn-off-password-expiry.sh<enter><wait5>/usr/bin/bash ./enable-ssh.sh<enter><wait5>/usr/bin/bash ./turn-off-password-expiry.sh<enter>",
+    "boot_command": "<enter><wait10><wait10><wait10><wait10><wait10>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/enable-ssh.sh<enter><wait5>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/poweroff.timer<enter><wait5>/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/turn-off-password-expiry.sh<enter><wait5>/usr/bin/bash ./enable-ssh.sh<enter><wait5>/usr/bin/bash ./turn-off-password-expiry.sh<enter>",
     "boot_wait": "5s",
     "box_basename": "Archlinux-Desktop",
     "build_directory": "build",
@@ -169,8 +169,8 @@
     "latestos_tag": "arch",
     "memory": "2048",
     "no_proxy": "{{ env `NO_PROXY` }}",
-    "shutdown_command": "sudo shutdown -h now",
-    "shutdown_timeout": "33m",
+    "shutdown_command": "sudo shutdown -P +2",
+    "shutdown_timeout": "43m",
     "ssh_password": "vagrant",
     "ssh_port": "22",
     "ssh_timeout": "30m",

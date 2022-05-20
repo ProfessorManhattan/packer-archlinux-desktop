@@ -121,8 +121,8 @@ sudo sed -i "/root.*\:$/c\root:$PASSWD:::::::" /mnt/etc/shadow
 PASSWD=$(echo "vagrant"|openssl passwd -6 -stdin)
 sudo sed -i "/vagrant.*\:$/c\vagrant:$PASSWD:::::::" /mnt/etc/shadow
 
-hostnamectl | grep 'vmware' &> /dev/null
-if [ $? == 0 ]; then
+echo 'checking if it is vmware'
+if [[ $(hostnamectl) == *"vmware"* ]]; then
    echo ">>>> configuring static ip address for network interface eth0"
    addr=$(ip route get 1.2.3.4 | awk '{print $7}')
    addr="Address=('"${addr}/24"')"
