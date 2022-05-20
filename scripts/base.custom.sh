@@ -18,8 +18,6 @@ TIMEZONE='UTC'
 CONFIG_SCRIPT='/usr/local/bin/arch-config.sh'
 ROOT_PARTITION="${DISK}2"
 TARGET_DIR='/mnt'
-COUNTRY=${COUNTRY:-US}
-MIRRORLIST="https://archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=http&protocol=https&ip_version=4&use_mirror_status=on"
 
 echo ">>>> install-base.sh: Clearing partition table on ${DISK}.."
 /usr/bin/sgdisk --zap ${DISK}
@@ -40,9 +38,8 @@ echo ">>>> install-base.sh: Creating /root filesystem (ext4).."
 echo ">>>> install-base.sh: Mounting ${ROOT_PARTITION} to ${TARGET_DIR}.."
 /usr/bin/mount -o noatime,errors=remount-ro ${ROOT_PARTITION} ${TARGET_DIR}
 
-echo ">>>> install-base.sh: Setting pacman ${COUNTRY} mirrors.."
-curl -s "$MIRRORLIST" | sed 's/^#Server/Server/' >/etc/pacman.d/mirrorlist
-
+echo ">>>> install-base.sh: Setting up latest and fastest pacman mirrors.."
+reflector --latest 7 --sort rate --download-timeout 47 --save /etc/pacman.d/mirrorlist
 
 echo ">>>> install-base.sh: Bootstrapping the base installation.."
 /usr/bin/pacstrap ${TARGET_DIR} base base-devel linux
@@ -124,6 +121,16 @@ sudo sed -i "/root.*\:$/c\root:$PASSWD:::::::" /mnt/etc/shadow
 PASSWD=$(echo "vagrant"|openssl passwd -6 -stdin)
 sudo sed -i "/vagrant.*\:$/c\vagrant:$PASSWD:::::::" /mnt/etc/shadow
 
+echo 'checking if it is vmware'
+if [[ $(hostnamectl) == *"vmware"* ]]; then
+   echo ">>>> configuring static ip address for network interface eth0"
+   addr=$(ip route get 1.2.3.4 | awk '{print $7}')
+   addr="Address=('"${addr}/24"')"
+   gat=$(ip route get 1.2.3.4 | awk '{print $3}')
+   gat="Gateway=('"${gat}"')"
+   echo -e "Interface=eth0\nConnection=ethernet\nIP=static\n${addr}\n${gat}\nDNS=('8.8.8.8' '8.8.4.4')" > ${TARGET_DIR}/etc/netctl/eth0
+   /usr/bin/arch-chroot ${TARGET_DIR}   netctl enable eth0
+fi
 
 echo ">>>> install-base.sh: Completing installation.."
 /usr/bin/sleep 3
@@ -136,5 +143,6 @@ sudo pacman -Sy --noconfirm  net-tools
 
 echo '==> Turning down network interfaces and rebooting'
 for i in $(/usr/bin/netstat -i | /usr/bin/tail +3 | /usr/bin/awk '{print $1}'); do /usr/bin/ip link set "${i}" down; done
+/usr/bin/sleep 13
 /usr/bin/systemctl reboot
 echo ">>>> install-base.sh: Installation complete!"
