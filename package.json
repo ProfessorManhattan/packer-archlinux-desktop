@@ -2,7 +2,7 @@
   "private": false,
   "name": "@mblabs/archlinux-desktop",
   "version": "1.5.0",
-  "description": "An automated ArchLinux Desktop (currently, version 2021.08.01) Packer project that builds boxes using the latest ArchLinux release on a regular basis",
+  "description": "An automated ArchLinux Desktop (currently, version ISO_VERSION) Packer project that builds boxes using the latest ArchLinux release on a regular basis",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
@@ -199,6 +199,9 @@
     "Vagrantfile": [
       "task fix:prettier --",
       "task lint:vagrant"
+    ],
+    "logo.(gif|jpg|jpeg|webp)": [
+      "task image:convert:logo --"
     ],
     "logo.png": [
       "task image:resize -- 200 200",
