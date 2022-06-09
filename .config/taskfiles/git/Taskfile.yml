@@ -51,7 +51,7 @@ tasks:
           HUSKY=0 git commit -m "☁️ chore(automation): Automated update" -n
         ignore_error: true
     status:
-      - '[[ "$FULLY_AUTOMATED_TASKS" == true ]] || [ "$SEMANTIC_RELEASE" == "true" ]'
+      - '[[ "$FULLY_AUTOMATED_TASKS" != "true" ]] || [ "$SEMANTIC_RELEASE" == "true" ]'
 
   convert:folder:submodule:
     deps:
