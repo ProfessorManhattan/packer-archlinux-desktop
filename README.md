@@ -36,7 +36,7 @@
     <img alt="Version: 1.5.0" src="https://img.shields.io/badge/version-1.5.0-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&cacheSeconds=2592000&style=flat-square" />
   </a>
   <a title="Pipeline status" href="https://gitlab.com/megabyte-labs/packer/archlinux-desktop/-/commits/master" target="_blank">
-    <img alt="Pipeline status" src="https://img.shields.io/gitlab/pipeline-status/playbook_path?branch=master&label=build&logo=gitlab&style=flat-square">
+    <img alt="Pipeline status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/archlinux-desktop?branch=master&label=build&logo=gitlab&style=flat-square">
   </a>
   <a title="Hyper-V build status" href="https://gitlab.com/megabyte-labs/packer/archlinux-desktop/-/commits/master" target="_blank">
     <img alt="Hyper-V build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/packer/archlinux-desktop?branch=hyperv&label=build&logo=hyper&style=flat-square">
@@ -61,7 +61,7 @@
   </a>
 </div>
 
-> </br><h4 align="center">**An automated ArchLinux Desktop (currently, version 2021.08.01) Packer project that builds boxes using the latest ArchLinux release on a regular basis**</h4></br>
+> </br><h4 align="center">**An automated ArchLinux Desktop (currently, version 2022.04.05) Packer project that builds boxes using the latest ArchLinux release on a regular basis**</h4></br>
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
@@ -92,9 +92,9 @@ This project houses configurations that can be used to build performant [ArchLin
 
 This project:
 
-- Currently builds a minimal variables.description VM image by default
+- Currently builds a minimal ArchLinux Desktop 2022.04.05 VM image by default
 - May contain multiple templates which will all end in `template.json` and be present in the root of the project
-- Automates the process of keeping our [variables.description VM images](https://app.vagrantup.com/variables.vagrantup_user/boxes/variables.box_basename) up-to-date with the latest upstream source by (1) using the `vagrant-cloud` post-processor to automatically upload the box after it is built and (2) running the build with a cronjob
+- Automates the process of keeping our [ArchLinux Desktop 2022.04.05 VM images](https://app.vagrantup.com/Megabyte/boxes/Archlinux-Desktop) up-to-date with the latest upstream source by (1) using the `vagrant-cloud` post-processor to automatically upload the box after it is built and (2) running the build with a cronjob
 - In some cases, [LatestOS](https://pypi.org/project/latestos/) is used to automatically update the link to the base image / checksums to the latest release
 
 ### Supported Virtualization Platforms
@@ -110,15 +110,15 @@ This project supports creating boxes for the following virtualization platforms:
 
 ## Requirements
 
-- At least one of the above virtualization platforms installed ([VirtualBox](https://github.com/ProfessorManhattan/ansible-virtualbox) is a good starting point if you do not already have one of the platforms installed)
-- [Packer](https://github.com/ProfessorManhattan/ansible-packer)
-- [Vagrant](https://github.com/ProfessorManhattan/ansible-vagrant)
+- At least one of the above virtualization platforms installed ([VirtualBox](https://github.com/megabyte-labs/ansible-virtualbox) is a good starting point if you do not already have one of the platforms installed)
+- [Packer](https://github.com/megabyte-labs/ansible-packer)
+- [Vagrant](https://github.com/megabyte-labs/ansible-vagrant)
 
 <a href="#quick-start" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
 
 ## Quick Start
 
-If you have [VirtualBox](https://github.com/ProfessorManhattan/ansible-virtualbox) and [Vagrant](https://github.com/ProfessorManhattan/ansible-vagrant) installed, you can quickly spin up the finished product of this repository by running the following code in the root directory of this repository:
+If you have [VirtualBox](https://github.com/megabyte-labs/ansible-virtualbox) and [Vagrant](https://github.com/megabyte-labs/ansible-vagrant) installed, you can quickly spin up the finished product of this repository by running the following code in the root directory of this repository:
 
 ```shell
 vagrant up
@@ -130,9 +130,9 @@ The default username and password are both _vagrant_.
 
 ## Creating Your Own Box
 
-You can quickly use this project to create your own minimal variables.description box by:
+You can quickly use this project to create your own minimal ArchLinux Desktop 2022.04.05 box by:
 
-1. Creating a box on VagrantUp titled variables.box_basename (Note: The VagrantUp box name should match the `"box_basename"` in the `template.json` file.)
+1. Creating a box on VagrantUp titled Archlinux-Desktop (Note: The VagrantUp box name should match the `"box_basename"` in the `template.json` file.)
 2. Changing the `"vagrantup_user"` variable in `template.json` to your VagrantUp username
 3. Acquiring a VagrantUp API token from the settings page
 4. Running the following code
@@ -155,7 +155,7 @@ If you do not want your box to be automatically uploaded to VagrantUp after you 
 
 ## Updating Your Box
 
-If a new release of the variables.description system is available, you can update your VagrantUp box. You can do this by changing the `"iso_checksum_url"`, `"iso_url"`, and `"iso_version"` variables in the `template.json` file. After that, run `packer build -only=virtualbox-iso template.json` to build the image again.
+If a new release of the ArchLinux Desktop 2022.04.05 system is available, you can update your VagrantUp box. You can do this by changing the `"iso_checksum_url"`, `"iso_url"`, and `"iso_version"` variables in the `template.json` file. After that, run `packer build -only=virtualbox-iso template.json` to build the image again.
 
 <a href="#contributing" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
 

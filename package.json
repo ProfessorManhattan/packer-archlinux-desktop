@@ -2,7 +2,7 @@
   "private": false,
   "name": "@mblabs/archlinux-desktop",
   "version": "1.5.0",
-  "description": "An automated ArchLinux Desktop (currently, version ISO_VERSION) Packer project that builds boxes using the latest ArchLinux release on a regular basis",
+  "description": "An automated ArchLinux Desktop (currently, version 2022.04.05) Packer project that builds boxes using the latest ArchLinux release on a regular basis",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
@@ -75,7 +75,7 @@
     "node": ">=14.18.0"
   },
   "publishConfig": {
-    "@gitlab:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
+    "@gitlab:registry": "https://gitlab.com/api/v4/projects/24081348/packages/npm/",
     "access": "public",
     "registry": "https://registry.npmjs.org/",
     "tag": "edge"
@@ -83,6 +83,9 @@
   "blueprint": {
     "description": "An automated ArchLinux Desktop (currently, version ISO_VERSION) Packer project that builds boxes using the latest ArchLinux release on a regular basis",
     "description_template": "ArchLinux Desktop ISO_VERSION",
+    "github_id": "R_kgDOHKFzJg",
+    "gitlab_group_id": "10839950",
+    "gitlab_project_id": "24081348",
     "group": "packer",
     "hostname": "vagrant-archlinux",
     "name": "ArchLinux Desktop",
